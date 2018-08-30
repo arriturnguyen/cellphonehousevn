@@ -1,0 +1,175 @@
+CREATE TABLE IF NOT EXISTS `celldb`.`users` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `address` VARCHAR(255) NULL,
+  `city` VARCHAR(50) NULL,
+  `phone` VARCHAR(20) NULL,
+  `user_type` TINYINT(1) NOT NULL,
+  `active` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ID_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
+ENGINE = InnoDB
+
+CREATE TABLE IF NOT EXISTS `celldb`.`user_activations` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(11) NOT NULL,
+  `token` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ID_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) VISIBLE,
+  UNIQUE INDEX `token_UNIQUE` (`token` ASC) VISIBLE,
+  CONSTRAINT `ID`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `celldb`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+
+CREATE TABLE IF NOT EXISTS `celldb`.`product_categories` (
+  `id` SMALLINT NOT NULL AUTO_INCREMENT,
+  `category_name` VARCHAR(50) NOT NULL,
+  `parent_id` SMALLINT NOT NULL,
+  `slug` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ID_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `category_name_UNIQUE` (`category_name` ASC) VISIBLE)
+ENGINE = InnoDB
+
+CREATE TABLE IF NOT EXISTS `celldb`.`products` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `product_name` VARCHAR(255) NOT NULL,
+  `category_id` SMALLINT NOT NULL,
+  `price` FLOAT NOT NULL,
+  `old_price` FLOAT NULL,
+  `description` TEXT NULL,
+  `images` TEXT NULL,
+  `status` TINYINT(1) NOT NULL,
+  `in_stock` SMALLINT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `idtable1_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `category_id_idx` (`category_id` ASC) VISIBLE,
+  CONSTRAINT `ID`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `celldb`.`product_categories` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+
+CREATE TABLE IF NOT EXISTS `celldb`.`option_groups` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `option_group_name` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ID_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `option_group_name_UNIQUE` (`option_group_name` ASC) VISIBLE)
+ENGINE = InnoDB
+
+CREATE TABLE IF NOT EXISTS `celldb`.`options` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `option_name` VARCHAR(50) NOT NULL,
+  `option_group_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ID_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `ID_idx` (`option_group_id` ASC) VISIBLE,
+  CONSTRAINT `ID`
+    FOREIGN KEY (`option_group_id`)
+    REFERENCES `celldb`.`option_groups` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+
+CREATE TABLE IF NOT EXISTS `celldb`.`product_options` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `product_id` INT(11) NOT NULL,
+  `option_id` INT(11) NOT NULL,
+  `price_increase` FLOAT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ID_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `ID_idx` (`product_id` ASC) VISIBLE,
+  INDEX `ID_idx1` (`option_id` ASC) VISIBLE,
+  CONSTRAINT `ID`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `celldb`.`products` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `ID`
+    FOREIGN KEY (`option_id`)
+    REFERENCES `celldb`.`options` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+
+CREATE TABLE IF NOT EXISTS `celldb`.`product_options` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `product_id` INT(11) NOT NULL,
+  `option_id` INT(11) NOT NULL,
+  `price_increase` FLOAT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ID_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `ID_idx` (`product_id` ASC) VISIBLE,
+  INDEX `ID_idx1` (`option_id` ASC) VISIBLE,
+  CONSTRAINT `ID`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `celldb`.`products` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `ID`
+    FOREIGN KEY (`option_id`)
+    REFERENCES `celldb`.`options` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+
+CREATE TABLE IF NOT EXISTS `celldb`.`order_details` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `order_id` INT(11) NOT NULL,
+  `product_id` INT(11) NOT NULL,
+  `product_name` VARCHAR(255) NOT NULL,
+  `price` FLOAT NOT NULL,
+  `quantity` INT(11) NOT NULL,
+  `memory` VARCHAR(45) NULL,
+  `color` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ID_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `ID_idx` (`order_id` ASC) VISIBLE,
+  INDEX `ID_idx1` (`product_id` ASC) VISIBLE,
+  CONSTRAINT `ID`
+    FOREIGN KEY (`order_id`)
+    REFERENCES `celldb`.`orders` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `ID`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `celldb`.`products` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+
+CREATE TABLE IF NOT EXISTS `celldb`.`reviews` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `product_id` INT(11) NOT NULL,
+  `point` TINYINT(1) NOT NULL,
+  `date` DATE NOT NULL,
+  `content` TEXT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ID_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `ID_idx` (`product_id` ASC) VISIBLE,
+  CONSTRAINT `ID`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `celldb`.`products` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+
+CREATE TABLE IF NOT EXISTS `celldb`.`news` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `content` TEXT NULL,
+  `new_date` DATE NOT NULL,
+  `title` VARCHAR(255) NOT NULL,
+  `description` VARCHAR(255) NULL,
+  `thumnail` TEXT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ID_UNIQUE` (`id` ASC) VISIBLE)
+ENGINE = InnoDB
