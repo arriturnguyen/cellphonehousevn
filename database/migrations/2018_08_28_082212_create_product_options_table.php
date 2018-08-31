@@ -15,9 +15,9 @@ class CreateProductOptionsTable extends Migration
     {
         Schema::create('product_options', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id');
-            $table->integer('option_id');
-            $table->integer('price_increase')->nullable();
+            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('option_id');
+            $table->unsignedInteger('price_increase')->nullable();
             $table->timestamps();
         });
     }

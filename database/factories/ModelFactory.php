@@ -16,7 +16,7 @@ $factory->define(App\User::class, function (Faker $faker) {
        	'address' => $faker->address,
        	'phone' => $faker->unique()->e164PhoneNumber,
        	'user_type' => '2',
-       	'active' => '2',
+        'token' => $faker->regexify('[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}'),
     ];
 });
 

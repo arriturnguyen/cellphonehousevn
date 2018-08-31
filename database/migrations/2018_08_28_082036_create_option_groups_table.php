@@ -15,7 +15,7 @@ class CreateOptionGroupsTable extends Migration
     {
         Schema::create('option_groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('option_group_name');
+            $table->string('option_group_name', 50);
             $table->timestamps();
         });
     }
