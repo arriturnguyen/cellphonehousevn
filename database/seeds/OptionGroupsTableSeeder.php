@@ -13,10 +13,10 @@ class OptionGroupsTableSeeder extends Seeder
     {
         DB::table('option_groups')->insert([
             [
-                'option_group_name' => 'Màu sắc'
+                'name' => 'Màu sắc'
             ],
             [
-                'option_group_name' => 'Bộ nhớ'
+                'name' => 'Bộ nhớ'
             ]
         ]);
     }

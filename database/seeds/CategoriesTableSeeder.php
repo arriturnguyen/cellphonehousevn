@@ -13,47 +13,47 @@ class CategoriesTableSeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
-                'category_name' => 'Điện thoại',
+                'name' => 'Điện thoại',
                 'parent_id' => '0',
                 'slug' => 'dien-thoai'
             ],
             [
-                'category_name' => 'Phụ kiện',
+                'name' => 'Phụ kiện',
                 'parent_id' => '0',
                 'slug' => 'phu-kien'
             ],
             [
-                'category_name' => 'Máy cũ giá rẻ',
+                'name' => 'Máy cũ giá rẻ',
                 'parent_id' => '0',
                 'slug' => 'may-cu'
             ],
             [
-                'category_name' => 'Apple',
+                'name' => 'Apple',
                 'parent_id' => '1',
                 'slug' => 'apple'
             ],
             [
-                'category_name' => 'Samsung',
+                'name' => 'Samsung',
                 'parent_id' => '1',
                 'slug' => 'samsung'
             ],
             [
-                'category_name' => 'Sony',
+                'name' => 'Sony',
                 'parent_id' => '1',
                 'slug' => 'sony'
             ],
             [
-                'category_name' => 'Asus',
+                'name' => 'Asus',
                 'parent_id' => '1',
                 'slug' => 'asus'
             ],
             [
-                'category_name' => 'Huawei',
+                'name' => 'Huawei',
                 'parent_id' => '1',
                 'slug' => 'huawei'
             ],
             [
-                'category_name' => 'Oppo',
+                'name' => 'Oppo',
                 'parent_id' => '1',
                 'slug' => 'oppo'
             ]
