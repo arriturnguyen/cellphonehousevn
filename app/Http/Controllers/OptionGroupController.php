@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\OptionGroups;
+use App\OptionGroup;
 use Illuminate\Http\Request;
 
-class OptionGroupsController extends Controller
+class OptionGroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class OptionGroupsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\OptionGroups  $optionGroups
+     * @param  \App\OptionGroup  $optionGroup
      * @return \Illuminate\Http\Response
      */
-    public function show(OptionGroups $optionGroups)
+    public function show(OptionGroup $optionGroup)
     {
         //
     }
@@ -52,10 +52,10 @@ class OptionGroupsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\OptionGroups  $optionGroups
+     * @param  \App\OptionGroup  $optionGroup
      * @return \Illuminate\Http\Response
      */
-    public function edit(OptionGroups $optionGroups)
+    public function edit(OptionGroup $optionGroup)
     {
         //
     }
@@ -64,10 +64,10 @@ class OptionGroupsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\OptionGroups  $optionGroups
+     * @param  \App\OptionGroup  $optionGroup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OptionGroups $optionGroups)
+    public function update(Request $request, OptionGroup $optionGroup)
     {
         //
     }
@@ -75,10 +75,10 @@ class OptionGroupsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\OptionGroups  $optionGroups
+     * @param  \App\OptionGroup  $optionGroup
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OptionGroups $optionGroups)
+    public function destroy(OptionGroup $optionGroup)
     {
         //
     }

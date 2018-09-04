@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ProductOptions;
+use App\ProductOption;
 use Illuminate\Http\Request;
 
-class ProductOptionsController extends Controller
+class ProductOptionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ProductOptionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ProductOptions  $productOptions
+     * @param  \App\ProductOption  $productOption
      * @return \Illuminate\Http\Response
      */
-    public function show(ProductOptions $productOptions)
+    public function show(ProductOption $productOption)
     {
         //
     }
@@ -52,10 +52,10 @@ class ProductOptionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ProductOptions  $productOptions
+     * @param  \App\ProductOption  $productOption
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductOptions $productOptions)
+    public function edit(ProductOption $productOption)
     {
         //
     }
@@ -64,10 +64,10 @@ class ProductOptionsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ProductOptions  $productOptions
+     * @param  \App\ProductOption  $productOption
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductOptions $productOptions)
+    public function update(Request $request, ProductOption $productOption)
     {
         //
     }
@@ -75,10 +75,10 @@ class ProductOptionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ProductOptions  $productOptions
+     * @param  \App\ProductOption  $productOption
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductOptions $productOptions)
+    public function destroy(ProductOption $productOption)
     {
         //
     }

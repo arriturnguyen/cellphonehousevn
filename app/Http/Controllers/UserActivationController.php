@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\UserActivations;
+use App\UserActivation;
 use Illuminate\Http\Request;
 
-class UserActivationsController extends Controller
+class UserActivationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class UserActivationsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\UserActivations  $userActivations
+     * @param  \App\UserActivation  $userActivation
      * @return \Illuminate\Http\Response
      */
-    public function show(UserActivations $userActivations)
+    public function show(UserActivation $userActivation)
     {
         //
     }
@@ -52,10 +52,10 @@ class UserActivationsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UserActivations  $userActivations
+     * @param  \App\UserActivation  $userActivation
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserActivations $userActivations)
+    public function edit(UserActivation $userActivation)
     {
         //
     }
@@ -64,10 +64,10 @@ class UserActivationsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserActivations  $userActivations
+     * @param  \App\UserActivation  $userActivation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserActivations $userActivations)
+    public function update(Request $request, UserActivation $userActivation)
     {
         //
     }
@@ -75,10 +75,10 @@ class UserActivationsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\UserActivations  $userActivations
+     * @param  \App\UserActivation  $userActivation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserActivations $userActivations)
+    public function destroy(UserActivation $userActivation)
     {
         //
     }

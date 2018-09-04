@@ -11,6 +11,17 @@
 |
 */
 
+DB::enableQueryLog();
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('/products', ['uses' => 'ProductController@index', 'as' => 'product.index']);
+
+Route::get('/products/{product}', ['uses' => 'ProductController@show', 'as' => 'product.show']);
+
+Route::get('/order', ['uses' => 'OrderController@show', 'as' => 'order.checkout']);
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
