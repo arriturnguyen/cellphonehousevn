@@ -22,7 +22,7 @@ $factory->define(App\User::class, function (Faker $faker) {
 
 $factory->define(App\Product::class, function (Faker $faker) {
     return [
-        'product_name' => $faker->name,
+        'name' => $faker->name,
         'category_id' => $faker->numberBetween($min = 4, $max = 9),
         'price' => $faker->numberBetween($min = 4000000, $max = 20000000),
         'old_price' => $faker->numberBetween($min = 4000000, $max = 20000000),
