@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Option extends Model
 {
-    public function product_options()
+    public function productOptions()
     {
     	return $this->hasMany('App\ProductOption');
     }
 
-    public function option_group()
+    public function optionGroup()
     {
     	return $this->belongsTo('App\OptionGroup');
     }
