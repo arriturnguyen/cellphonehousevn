@@ -46,7 +46,7 @@
 										</div>
 										<div class="product-body">
 											<p class="product-category">Category</p>
-											<h3 class="product-name"><a href="{{route('product.show', $product->id)}}">{{$product->product_name}}</a></h3>
+											<h3 class="product-name"><a href="{{route('product.show', $product->id)}}">{{$product->name}}</a></h3>
 											<h4 class="product-price">{{$product->price}} <del class="product-old-price">{{$product->old_price}}</del></h4>
 											<div class="product-rating">
 												<i class="fa fa-star"></i>

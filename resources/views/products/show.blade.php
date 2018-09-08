@@ -76,7 +76,7 @@
                     <!-- Product details -->
                     <div class="col-md-5">
                         <div class="product-details">
-                            <h2 class="product-name">{{$product->product_name}}</h2>
+                            <h2 class="product-name">{{$product->name}}</h2>
                             <div>
                                 <div class="product-rating">
                                     <i class="fa fa-star"></i>
