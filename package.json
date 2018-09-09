@@ -20,6 +20,5 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "adminbsb-materialdesign": "^1.0.5"
     }
 }
