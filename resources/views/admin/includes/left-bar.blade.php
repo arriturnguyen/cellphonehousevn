@@ -50,15 +50,6 @@
             </ul>
 
             <a href="javascript:void(0);" class="menu-toggle">
-              <i class="material-icons">store</i>
-              <span>{{ __('left-bar.store') }}</span>
-            </a>
-            <ul class="ml-menu">
-              <li><a href="{{ route('admin.stores.create') }}">{{ __('left-bar.create-store') }}</a></li>
-              <li><a href="{{ route('admin.stores.index') }}">{{ __('left-bar.show-store') }}</a></li>
-            </ul>
-
-            <a href="javascript:void(0);" class="menu-toggle">
               <i class="material-icons">restaurant</i>
               <span>{{ __('left-bar.product') }}</span>
             </a>
