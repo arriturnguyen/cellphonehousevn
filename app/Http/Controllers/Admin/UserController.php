@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::orderBy('created_at', 'DESC')->paginate(10);
         return view('admin.pages.users.index', compact('users'));
     }
 
@@ -40,7 +40,10 @@ class UserController extends Controller
      */
     public function store(CreateUserRequest $request)
     {
+        $request->request->add(['token' => User::createToken()]);
         $userData = $request->all();
+        $userData['password'] = bcrypt($request->password);
+        //dd($userData);
         User::create($userData);
         return redirect()->route('admin.users.index')->with('message', __('user.admin.create.create_success'));
     }

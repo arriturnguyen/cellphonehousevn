@@ -21,8 +21,6 @@
                 <th>ID</th>
                 <th>{{__('user.admin.name')}}</th>
                 <th>{{__('user.admin.email')}}</th>
-                <th>{{__('user.admin.address')}}</th>
-                <th>{{__('user.admin.phone')}}</th>
                 <th>{{__('user.admin.role')}}</th>
                 <th>{{__('user.admin.active')}}</th>
                 <th>{{__('user.admin.show.edit')}}</th>
@@ -35,8 +33,6 @@
                 <th>{{ $user->id }}</th>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
-                <td>{{ $user->address }}</td>
-                <td>{{ $user->phone }}</td>
                 @if ($user->user_type == 1)
                   <td>{{__('user.admin.admin')}}</td>
                 @else

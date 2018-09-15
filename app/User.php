@@ -40,6 +40,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Review');
     }
+
+    public static function createToken()
+    {
+        return str_random('60');
+    }
 }
 
 // class User extends Model

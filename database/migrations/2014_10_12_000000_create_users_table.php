@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('phone', 20)->unique();
             $table->unsignedTinyInteger('user_type');
-            $table->string('token');
+            $table->string('token')->nullable();
             $table->boolean('active')->default(false);
             $table->rememberToken();
             $table->timestamps();
