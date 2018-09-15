@@ -43,9 +43,9 @@
                 </div>
               </div>
               <div class="form-group">
-                  <label for="images">{{ __('product.admin.create.images') }}</label>
+                  <label for="image[]">{{ __('product.admin.create.images') }}</label>
                   <div class="form-line">
-                    <input type="text" name="images" class="form-control" placeholder="" />
+                    <input type="file" name="image[]" class="form-control" multiple/>
                   </div>
               </div>
               <div class="form-group">

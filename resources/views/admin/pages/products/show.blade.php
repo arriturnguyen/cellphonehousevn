@@ -67,9 +67,19 @@
             <h4>{{__('product.admin.show.images')}}:</h4>
           </div>
           <div class="col-sm-9">
-            
-                <img class="img-responsive thumbnail" src="images/products/no-image.jpg">  
-              
+            @if ($product->images != NULL)
+
+              <?php $images = json_decode($product->images, true); ?>
+              @foreach ($images as $image)
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                  <img height="200" class="img-responsive thumbnail" src="{{ $image }}">
+                </div>
+              @endforeach
+            @else
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <img class="img-responsive thumbnail" src="images/products/no-image.jpg">
+              </div>
+            @endif
           </div>
         </div>
         <div class="row clearfix">

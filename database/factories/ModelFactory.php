@@ -27,7 +27,7 @@ $factory->define(App\Product::class, function (Faker $faker) {
         'price' => $faker->numberBetween($min = 4000000, $max = 20000000),
         'old_price' => $faker->numberBetween($min = 4000000, $max = 20000000),
        	'description' => $faker->text($maxNbChars = 100),
-       	'images' => $faker->imageUrl($width = 640, $height = 480),
+       	'images' => '["\/images\/products\/153697726938085Penguins.jpg","\/images\/products\/153697726985360Tulips.jpg"]',
        	'status' => $faker->numberBetween($min = 1, $max = 4),
        	'in_stock' => $faker->numberBetween($min = 5, $max = 15),
     ];
