@@ -30,47 +30,39 @@
                 <!-- row -->
                 <div class="row">
                     <!-- Product main img -->
-                    <div class="col-md-5 col-md-push-2">
-                        <div id="product-main-img">
-                            <div class="product-preview">
-                                <img src="./img/product01.png" alt="">
+                    @if ($product->images != NULL)
+                      <?php $images = json_decode($product->images, true); ?>
+                      <div class="col-md-5 col-md-push-2">
+                            <div id="product-main-img">
+                            @foreach ($images as $image)
+                                <div class="product-preview">
+                                <img src="{{ $image }}" alt="">
+                                </div> 
+                            @endforeach
+                             
+                    @else
+                        <img src="images/products/no-image.jpg">
+                    @endif
                             </div>
-
-                            <div class="product-preview">
-                                <img src="./img/product03.png" alt="">
-                            </div>
-
-                            <div class="product-preview">
-                                <img src="./img/product06.png" alt="">
-                            </div>
-
-                            <div class="product-preview">
-                                <img src="./img/product08.png" alt="">
-                            </div>
-                        </div>
-                    </div>
+                      </div>
                     <!-- /Product main img -->
 
                     <!-- Product thumb imgs -->
-                    <div class="col-md-2  col-md-pull-5">
-                        <div id="product-imgs">
-                            <div class="product-preview">
-                                <img src="./img/product01.png" alt="">
+                    @if ($product->images != NULL)
+                      <?php $images = json_decode($product->images, true); ?>
+                      <div class="col-md-2  col-md-pull-5">
+                            <div id="product-imgs">
+                            @foreach ($images as $image)
+                                <div class="product-preview">
+                                <img src="{{ $image }}" alt="">
+                                </div> 
+                            @endforeach
+                             
+                    @else
+                        <img src="images/products/no-image.jpg">
+                    @endif
                             </div>
-
-                            <div class="product-preview">
-                                <img src="./img/product03.png" alt="">
-                            </div>
-
-                            <div class="product-preview">
-                                <img src="./img/product06.png" alt="">
-                            </div>
-
-                            <div class="product-preview">
-                                <img src="./img/product08.png" alt="">
-                            </div>
-                        </div>
-                    </div>
+                      </div>
                     <!-- /Product thumb imgs -->
 
                     <!-- Product details -->
@@ -118,12 +110,17 @@
                                 <div class="qty-label">
                                     Qty
                                     <div class="input-number">
-                                        <input type="number">
-                                        <span class="qty-up">+</span>
-                                        <span class="qty-down">-</span>
+                                        <!-- <input type="number"> -->
+                                        <input id="Soluong" data-qty="" type="number" class="form-control" placeholder="{{__('user/product.details.quantity')}}" name="quantity" value="1"  />
+                                        <!-- <span class="qty-up">+</span>
+                                        <span class="qty-down">-</span> -->
                                     </div>
                                 </div>
-                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                <button class="add-to-cart-btn" id="{{$product->id}}" data-id="{{$product->id}}"
+                                data-name="{{$product->name}}"
+                                data-price="{{$product->price}}"
+                                data-image="<?php $images = json_decode($product->images, true); echo $images[0]; ?>" ><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                <h1 class="tot">0</h1>
                             </div>
 
                             <ul class="product-btns">
@@ -369,4 +366,67 @@
             <!-- /container -->
         </div>
         <!-- /SECTION -->
+<script type="text/javascript">
+    var quantity=0;
+    $(document).ready(function() {
+        quantity= parseInt($('#Soluong').val());
+        
+    });
+    if(JSON.parse(localStorage.getItem('cart'))) {
+        cart= JSON.parse(localStorage.getItem('cart'));
+    } else {
+        var cart=[];
+    };
+    $('#Soluong').on('change', function(){
+        quantity= parseInt($(this).val());
+    });
+    $('button').on('click', function(){
+        // alert('d');
+        // var product_name= $(this).attr('data-name');
+        // var product_price= $(this).attr('data-name');
+        var product_id =$(this).attr('id');
+        if (cart.length) {
+            var result= findProductInCartById(cart, product_id);
+            console.log('vi tri sp tim thay', result);
+            if(result!==false) {
+                cart[result].quantity+= parseInt(quantity);
+                console.log('tang so luong',cart);
+            } else {
+                console.log('chua co sp do');
+                addCart(cart, $(this));
+            }
+        } else {
+            console.log('chua co cart');
+            addCart(cart, $(this));
+        }
+        
+        // console.log(product);
+        
+        
+        console.log('sau khi addCart', cart);
+        localStorage.cart=JSON.stringify(cart);
+    });
+
+    function findProductInCartById(cart, product_id){
+
+        for (var i = 0; i < cart.length; i++) {
+            console.log('id sp moi: ', product_id, 'id sp for:', cart[i].id);
+            if (cart[i].id===product_id) {
+                console.log('tim thay');
+                return i;
+            } else {
+                
+                continue;
+            }
+
+        }
+        console.log('ko tim thay');
+        return false;
+    };
+    function addCart(cart, data){
+        alert('Soluong'+quantity);
+        var product= {'image': data.attr('data-image'), 'name': data.attr('data-name'), 'id' : data.attr('id'), 'price' : data.attr('data-price'), 'quantity' : quantity };
+        cart.push(product);
+    }
+</script>
 @endsection
