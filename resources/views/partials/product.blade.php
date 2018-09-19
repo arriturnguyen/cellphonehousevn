@@ -38,7 +38,14 @@
 								<div class="col-md-<?php echo $bootstrapColWidth; ?>">
 							        <div class="product">
 										<div class="product-img">
-											<img src="./img/product07.png" alt="">
+											
+											@if ($product->images != NULL)
+							                  <?php $images = json_decode($product->images, true); ?>
+							                  <img src="{{ $images[0] }}">
+							                @else
+							                  <img src="images/products/no-image.jpg"></th>
+							                @endif
+
 											<div class="product-label">
 												<span class="sale">-30%</span>
 												<span class="new">NEW</span>

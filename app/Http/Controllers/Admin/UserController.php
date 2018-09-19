@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\Admin\CreateUserRequest;
+use App\Http\Requests\Admin\UpdateUserRequest;
 
 class UserController extends Controller
 {

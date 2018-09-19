@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Home;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\User;
+use App\Order;
 
-class UpdateUserRequest extends FormRequest
+class CreateOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,11 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => 'string|max:255',
-            'address'       => 'string|max:255',
-            'phone'         => 'regex:/\(?([0-9]{3})\)?([ . -]?)([0-9]{3})\2([0-9]{4})/',
-            'user_type'     => 'required|integer|min:1|max:2',
-            'active'        => 'required|boolean',
+            'user_name'          => 'required|string|max:255',
+            'address'       => 'required|string|max:255',
+            'phone'         => 'required|string|max:20',
+            'amount'        => 'required|integer',
+            'cart'          => 'required|json'
         ];
     }
 }

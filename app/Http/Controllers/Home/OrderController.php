@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Home;
 
 use App\Order;
+use App\OrderDetail;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Home\CreateOrderRequest;
 
 class OrderController extends Controller
 {
@@ -24,7 +27,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('checkout');
     }
 
     /**
@@ -33,9 +36,22 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateOrderRequest $request)
     {
-        //
+        $orderData = $request->all();
+        $order = Order::create($orderData);
+        $jsonData = [];
+        $jsonData = json_decode($request->cart);
+        foreach ($jsonData as $product) {
+            OrderDetail::create([
+                'order_id' => $order->id,
+                'product_id' =>$product->id,
+                'product_name' =>$product->name,
+                'price' =>$product->price,
+                'quantity' => $product->quantity
+            ]);
+        }
+
     }
 
     /**

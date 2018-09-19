@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateProductRequest;
-use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\Admin\UpdateProductRequest;
+use App\Http\Requests\Admin\CreateProductRequest;
 
 
 class ProductController extends Controller

@@ -111,7 +111,7 @@
                                     Qty
                                     <div class="input-number">
                                         <!-- <input type="number"> -->
-                                        <input id="Soluong" data-qty="" type="number" class="form-control" placeholder="{{__('user/product.details.quantity')}}" name="quantity" value="1"  />
+                                        <input id="Soluong" type="number" class="form-control" placeholder="{{__('user/product.details.quantity')}}" name="quantity" value="1"  />
                                         <!-- <span class="qty-up">+</span>
                                         <span class="qty-down">-</span> -->
                                     </div>
@@ -370,7 +370,7 @@
     var quantity=0;
     $(document).ready(function() {
         quantity= parseInt($('#Soluong').val());
-        
+    
     });
     if(JSON.parse(localStorage.getItem('cart'))) {
         cart= JSON.parse(localStorage.getItem('cart'));

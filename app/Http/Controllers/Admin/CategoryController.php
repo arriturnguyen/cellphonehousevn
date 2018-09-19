@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateCategoryRequest;
-use App\Http\Requests\EditCategoryRequest;
+use App\Http\Requests\Admin\CreateCategoryRequest;
+use App\Http\Requests\Admin\EditCategoryRequest;
 use Mockery\Exception;
 
 class CategoryController extends Controller

@@ -23,7 +23,7 @@ Route::get('/products', ['uses' => 'ProductController@index', 'as' => 'product.i
 
 Route::get('/products/{product}', ['uses' => 'ProductController@show', 'as' => 'product.show']);
 
-Route::get('/order', ['uses' => 'OrderController@show', 'as' => 'order.checkout']);
+// Route::get('/order', ['uses' => 'OrderController@show', 'as' => 'order.checkout']);
 Auth::routes();
 
 
@@ -37,7 +37,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('users', 'UserController');
     Route::get('categories/{category}/show-child', 'CategoryController@showChild')->name('categories.showChild');
     Route::resource('categories', 'CategoryController');
-    Route::resource('stores', 'StoreController');
+    // Route::resource('stores', 'StoreController');
     Route::resource('products', 'ProductController');
     
+});
+
+Route::group(['namespace' => 'Home'], function () {
+    // Route::get('/', 'HomeController@index')->name('user.home');
+    // Route::resource('products', 'ProductController');
+    // Route::get('/profile', 'UserController@index')->name('user.info');
+    Route::get('/cart', 'CartController@index')->name('cart');
+    // Route::get('/checkout','OrderController@create')->name('order.create');
+    Route::resource('orders', 'OrderController');
 });
