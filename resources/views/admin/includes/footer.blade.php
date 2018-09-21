@@ -1,7 +1,8 @@
 <script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<!-- Jquery Core Js -->
-<script
-	src="bower_components/adminbsb-materialdesign/plugins/jquery/jquery.min.js"></script>
+
+<!-- Move to footer for AJAX work -->
+<!-- Jquery Core Js was here-->
+
 
 <script
 	src="bower_components/adminbsb-materialdesign/plugins/bootstrap/js/bootstrap.js"></script>

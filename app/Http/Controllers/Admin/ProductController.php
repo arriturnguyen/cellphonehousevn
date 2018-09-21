@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdateProductRequest;
@@ -20,7 +21,7 @@ class ProductController extends Controller
     {
         // Get all product
         //DB::enableQueryLog();
-        $products = Product::all();
+        $products = Product::orderBy('created_at', 'DESC')->paginate(10);
         return view('admin/pages/products/index')->with('products', $products);
     }
 
@@ -31,7 +32,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.products.create');
+        // return view('admin.pages.products.create');
+        $categories = Category::pluck('name', 'id');
+        return view('admin.pages.products.create', compact('categories'));
     }
 
     /**
@@ -52,7 +55,7 @@ class ProductController extends Controller
                 foreach (request()->file('image') as $image) 
                 {
                     $filename = $image->getClientOriginalName();
-                    $newFilename = '/images/products/'.round(microtime(true)).rand(0,99999).$filename;
+                    $newFilename = '/images/products/'.md5(microtime(true)).$filename;
                     $image->move(public_path('/images/products/'), $newFilename);
                     array_push($imageData, $newFilename);
                 }
@@ -117,7 +120,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.pages.products.edit', compact('product'));
+        // return view('admin.pages.products.edit', compact('product'));
+        $categories = Category::pluck('name', 'id');
+        return view('admin.pages.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -133,16 +138,17 @@ class ProductController extends Controller
         {
             if ($request->hasFile('image')) 
             {
-                $imageData = [];
+                $images = $product->images;
+
                 foreach (request()->file('image') as $image) 
                 {
                     $filename = $image->getClientOriginalName();
-                    $newFilename = '/images/products/'.round(microtime(true)).rand(0,99999).$filename;
+                    $newFilename = '/images/products/'.md5(microtime(true)).$filename;
                     $image->move(public_path('/images/products/'), $newFilename);
-                    array_push($imageData, $newFilename);
+                    array_push($images, $newFilename);
+                    $product->images = $images;
                 }
-                $images = json_encode($imageData);
-                
+
                 $updateProduct = $request->except(["_token", "_method", "submit"]);
                 $updateProduct['images']= $images;
                 
@@ -168,6 +174,35 @@ class ProductController extends Controller
             return redirect()->route('admin.products.index')->with('message', __('product.admin.delete_success'));
         } catch (Exception $e) {
             return redirect()->route('admin.products.index')->with('alert', __('product.admin.delete_fail'));
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function delProductImage(Request $request)
+    {
+        try {
+            // Delete image from product images
+            $imageID = $request->imageID;
+            $product = Product::findOrFail($request->productID);
+            $images = $product->images;
+            unset($images[$imageID]);
+            $product->images = $images;
+            $product->save();
+
+            // Delete file image
+            return response([
+                'status' => true
+            ], 200);
+        } catch (Exception $e) {
+            return response([
+                'status' => false,
+                'msg' => $e->getMessage()
+            ], 204);
         }
     }
 }

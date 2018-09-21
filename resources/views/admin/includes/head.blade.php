@@ -83,3 +83,8 @@
 <!-- AdminBSB Themes. You can choose a theme from themes instead of get all themes -->
 <link
 	href="bower_components/adminbsb-materialdesign/css/themes/all-themes.css" rel="stylesheet" />
+
+<!-- Move from header for AJAX work -->
+<!-- Jquery Core Js -->
+<script
+	src="bower_components/adminbsb-materialdesign/plugins/jquery/jquery.min.js"></script>
