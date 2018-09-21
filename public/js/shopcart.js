@@ -9,6 +9,10 @@ $(document).ready(function() {
   console.log(cart);
         showCart(cart);
         recalculateCart();
+        /* Cart item qty update */
+        // cart = JSON.parse(localStorage.getItem('cart'));
+        // html = cart.length;
+        // $('.qty').html(html);
     /* Assign actions */
   $('.product-quantity input').change( function() {
     quantity= parseInt($(this).val());
@@ -40,12 +44,21 @@ $(document).ready(function() {
 
 function showCart(cart) {
     // alert('Test');
-    var html = '', total = 0;
+    var html = '';
     if(cart.length){
         $('.your-cart').html('Your Cart');
         for(var i=0; i<cart.length; i++) {
             var cartItem = cart[i];
-            total += cartItem.price * cartItem.quantity;
+            var subtotal = 0;
+            subtotal += cartItem.price * cartItem.quantity;
+            
+            /* Convert cac bien int sang string de dung duoc ham formatCurrency */
+            var echoSubtotal = subtotal.toString();
+            var echoPrice = cartItem.price;
+            echoPrice = echoPrice.toString();
+
+            // formatCurrency(subtotal);
+            // console.log('tttt0', formatCurrency(parseInt(cartItem.price)), formatCurrency(parseInt(subtotal)));
             html += ' <div class="product">'+
                     '    <div class="product-image">'+
                     '      <img src="'+cartItem.image+'">'+
@@ -53,16 +66,18 @@ function showCart(cart) {
                     '    <div class="product-details">'+
                     '      <div class="product-title">'+cartItem.name+'</div>'+
                     '    </div>'+
-                    '    <div class="product-price">'+cartItem.price+'</div>'+
+                    '    <div class="product-price">'+formatCurrency(echoPrice)+'</div>'+
+                    '    <div class="product-price-sub" hidden>'+cartItem.price+'</div>'+
                     '    <div class="product-quantity">'+
-                    '      <input type="number" id="change-qty" data-product-id="'+cartItem.id+'" value="'+cartItem.quantity+'" min="1" max="10">'+
+                    '      <input type="number" id="change-qty" data-product-id="'+cartItem.id+ '" value="'+cartItem.quantity+'" min="1" max="10">'+
                     '    </div>'+
                     '    <div class="product-removal">'+
                     '      <button class="remove-product" data-product-id="'+cartItem.id+'">'+
                     '        Remove'+
                     '      </button>'+
                     '    </div>'+
-                    '    <div class="product-line-price">'+total+'</div>'+
+                    '    <div class="product-line-price">'+formatCurrency(echoSubtotal)+'</div>'+
+                    '    <div class="product-line-price-sub" hidden>'+subtotal+'</div>'+
                     ' </div>';    
         }
         $('.item').html(html);
@@ -71,26 +86,35 @@ function showCart(cart) {
     }
 }
 
+/*Format currency*/
+function formatCurrency(number){
+    var n = number.split('').reverse().join("");
+    var n2 = n.replace(/\d\d\d(?!$)/g, "$&,");    
+    return  n2.split('').reverse().join('') + ' VNĐ';
+}
+
 /* Recalculate cart */
 function recalculateCart()
 {
-  var subtotal = 0;
+  var sumsubtotal = 0;
   /* Sum up row totals */
   $('.product').each(function () {
-    subtotal += parseFloat($(this).children('.product-line-price').text());
+    sumsubtotal += parseFloat($(this).children('.product-line-price-sub').text());
   });
   
   /* Calculate totals */
-  var tax = subtotal * taxRate;
-  var shipping = (subtotal > 0 ? shippingRate : 0);
-  var total = subtotal + tax + shipping;
+  var total = sumsubtotal + shippingRate;
   
+  /* Convert cac bien int sang string de dung duoc ham formatCurrency */
+  var echoSumsubtotal = sumsubtotal.toString();
+  var echoShippingRate = shippingRate.toString();
+  var echoTotal = total.toString();
+
   /* Update totals display */
   $('.totals-value').fadeOut(fadeTime, function() {
-    $('#cart-subtotal').html(subtotal.toFixed(2));
-    $('#cart-tax').html(tax.toFixed(2));
-    $('#cart-shipping').html(shipping.toFixed(2));
-    $('#cart-total').html(total.toFixed(2));
+    $('#cart-subtotal').html(formatCurrency(echoSumsubtotal));
+    $('#cart-shipping').html(formatCurrency(echoShippingRate));
+    $('#cart-total').html(formatCurrency(echoTotal));
     if(total == 0){
       $('.checkout').fadeOut(fadeTime);
     }else{
@@ -98,6 +122,11 @@ function recalculateCart()
     }
     $('.totals-value').fadeIn(fadeTime);
   });
+
+  /* Cart item qty update */
+        // cart = JSON.parse(localStorage.getItem('cart'));
+        // html = cart.length;
+        // $('.qty').html(html);
 }
 
 
@@ -106,16 +135,29 @@ function updateQuantity(quantityInput)
 {
   /* Calculate line price */
   var productRow = $(quantityInput).parent().parent();
-  var price = parseFloat(productRow.children('.product-price').text());
+  var price = parseFloat(productRow.children('.product-price-sub').text());
   var quantity = $(quantityInput).val();
   var linePrice = price * quantity;
+
+  /* Convert cac bien int sang string de dung duoc ham formatCurrency */
+  var echoLinePrice = linePrice.toString();
   
-  /* Update line price display and recalc cart totals */
+  /* Update line price display and recalc cart totals
+  ((Update tai div hien thi => de dang string moi dung ham formatcurrency duoc)) */
   productRow.children('.product-line-price').each(function () {
     $(this).fadeOut(fadeTime, function() {
-      $(this).text(linePrice.toFixed(2));
-      recalculateCart();
+      $(this).text(formatCurrency(echoLinePrice));
+      // recalculateCart();
       $(this).fadeIn(fadeTime);
+    });
+  });
+  /* Update line price display and recalc cart totals 
+  (Update tai div hidden => de nguyen dang int moi recalculate cart duoc) */
+  productRow.children('.product-line-price-sub').each(function () {
+    $(this).fadeOut(fadeTime, function() {
+      $(this).text(linePrice);
+      recalculateCart();
+      // $(this).fadeIn(fadeTime);
     });
   });  
 }

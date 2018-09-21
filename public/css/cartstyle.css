@@ -58,26 +58,37 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
 /* Apply clearfix in a few places */
 /* Apply dollar signs */
 .product .product-price:before, .product .product-line-price:before, .totals-value:before {
-  content: '$';
+  /* Change place
+  content: '$'; */
 }
 
 /* Body/Header stuff */
 body {
+  /* Change place 
   padding: 0px 30px 30px 20px;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 100;
+  font-weight: 100; */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
 }
 
 h1 {
   font-weight: 100;
+  /* Change place */
+  padding-left: 5px;
 }
 
 label {
   color: #aaa;
+  /* Change place */
+  padding-right: 5px;
 }
 
 .shopping-cart {
   margin-top: -45px;
+  /* Change place */
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 /* Column headers */
@@ -94,6 +105,8 @@ label {
 .product {
   margin-bottom: 20px;
   padding-bottom: 10px;
+  /* Change place */
+  padding-top: 10px; 
   border-bottom: 1px solid #eee;
 }
 .product .product-image {

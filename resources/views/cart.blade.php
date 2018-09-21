@@ -29,10 +29,6 @@
       <div class="totals-value" id="cart-subtotal"></div>
     </div>
     <div class="totals-item">
-      <label>Tax (5%)</label>
-      <div class="totals-value" id="cart-tax"></div>
-    </div>
-    <div class="totals-item">
       <label>Shipping</label>
       <div class="totals-value" id="cart-shipping"></div>
     </div>
@@ -41,9 +37,9 @@
       <div class="totals-value" id="cart-total"></div>
     </div>
   </div>
-      
+      <a href="{{ route('orders.create') }}">
       <button class="checkout">Checkout</button>
-
+      </a>
 </div>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
