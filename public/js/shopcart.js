@@ -9,10 +9,7 @@ $(document).ready(function() {
   console.log(cart);
         showCart(cart);
         recalculateCart();
-        /* Cart item qty update */
-        // cart = JSON.parse(localStorage.getItem('cart'));
-        // html = cart.length;
-        // $('.qty').html(html);
+        
     /* Assign actions */
   $('.product-quantity input').change( function() {
     quantity= parseInt($(this).val());
@@ -29,6 +26,9 @@ $(document).ready(function() {
       cart[result].quantity= parseInt(quantity);
       console.log('thay doi so luong',cart);  
       localStorage.cart=JSON.stringify(cart);
+
+      cartIconQtyUpdate();
+
     }
   });
 
@@ -39,6 +39,9 @@ $(document).ready(function() {
     console.log('cart after remove', cart);
     removeItem(this);
     localStorage.cart=JSON.stringify(cart);
+
+    cartIconQtyUpdate();      
+  
   });      
 });
 
@@ -122,11 +125,6 @@ function recalculateCart()
     }
     $('.totals-value').fadeIn(fadeTime);
   });
-
-  /* Cart item qty update */
-        // cart = JSON.parse(localStorage.getItem('cart'));
-        // html = cart.length;
-        // $('.qty').html(html);
 }
 
 
@@ -159,7 +157,7 @@ function updateQuantity(quantityInput)
       recalculateCart();
       // $(this).fadeIn(fadeTime);
     });
-  });  
+  });
 }
 
 
@@ -203,3 +201,16 @@ function findProductInCartById(cart, product_id){
                 console.log('thay doi so luong',cart);
   });
 
+/* Cart icon qty update function */
+function cartIconQtyUpdate(){
+  var totalQty = 0;
+  if(cart.length) {
+    for(var i=0; i<cart.length; i++) {
+      var cartItem = cart[i];
+            totalQty += cartItem.quantity;
+    }
+    $('.qty').html(totalQty);
+  } else {
+    $('.qty').html(totalQty);
+  }
+}
