@@ -27,7 +27,7 @@ class CreateOrderRequest extends FormRequest
         return [
             'user_name'          => 'required|string|max:255',
             'address'       => 'required|string|max:255',
-            'phone'         => 'required|string|max:20',
+            'phone'         => 'required|regex:/^0[0-9]{9,10}$/|string|max:20',
             'amount'        => 'required|integer',
             'cart'          => 'required|json'
         ];

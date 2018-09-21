@@ -3,6 +3,7 @@
 @section('content')
         
 <!-- SECTION -->
+@include('partials.message')
 <div class="section">
     <!-- container -->
     <div class="container">
@@ -18,20 +19,20 @@
                     <form method="POST" action="{{ route('orders.store') }}">
                     @csrf
                     <div class="form-group">
-                        <input class="input" type="text" name="user_name" placeholder="Name" required>
+                        <input class="input" type="text" name="user_name" value="{{ old('name')}}" placeholder="Name" required>
                     </div>
                     
                     <div class="form-group">
-                        <input class="input" type="text" name="address" placeholder="Address" required>
+                        <input class="input" type="text" name="address" value="{{ old('address')}}" placeholder="Address" required>
                     </div>
                     <div class="form-group">
-                        <input class="input" type="tel" name="phone" placeholder="Phone" required>
+                        <input class="input" type="tel" name="phone" value="{{ old('phone')}}" placeholder="Phone" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="cart" id="cart" readonly>
+                        <input type="text" name="cart" id="cart" readonly hidden>
                     </div>
                     <div class="form-group">
-                        <input type="number" name="amount" id="amount" readonly>
+                        <input type="number" name="amount" id="amount" readonly hidden>
                     </div>
                     <div class="form-group">
                         <div class="input-checkbox">
@@ -116,31 +117,46 @@
     });
     var cart = JSON.parse(localStorage.getItem('cart'));
     $('#cart').val(localStorage.getItem('cart'));
+
+    function formatCurrency(number){
+        var n = number.split('').reverse().join("");
+        var n2 = n.replace(/\d\d\d(?!$)/g, "$&,");    
+        return  n2.split('').reverse().join('') + ' VNĐ';
+    }
+
     function showCart(cart) {
         // alert('Test');
-        var html = '', ship_html = '', sum_html = '', subtotal = 0, total = 0, ship_fee = 30000;
+        var html = '', ship_html = '', sum_html = '', total = 0, ship_fee = 30000;
         if(cart.length){
             $('.your-cart').html('Your Cart');
             for(var i=0; i<cart.length; i++) {
                 var cartItem = cart[i];
+                var subtotal = 0;
                 subtotal += cartItem.price * cartItem.quantity;
+
+                var echoSubtotal = subtotal.toString();
+
                 html += ' <div class="order-col"> '+
                         '    <div>'+cartItem.quantity+' x '+cartItem.name+
                         ' </div>'+
-                        '    <div>'+subtotal+'</div>'+
+                        '    <div>'+formatCurrency(echoSubtotal)+'</div>'+
                         ' </div>';
                 total += subtotal;            
             }
                 total += ship_fee;
+
+                var echoTotal = total.toString();
+                var echoShip_fee = ship_fee.toString();
+
             ship_html +=    ' <div class="order-col"> '+
                             ' <div>'+'Shiping'+'</div>'+
-                            '    <div>'+ship_fee+
+                            '    <div>'+formatCurrency(echoShip_fee)+
                             ' </div>'+
                             ' </div>';
 
             sum_html  +=    ' <div class="order-col"> '+
                             ' <div>'+'<strong>'+'TOTAL'+'</strong>'+'</div>'+
-                            ' <div>'+'<strong class="order-total">'+total+'</strong>'+'</div>'+
+                            ' <div>'+'<strong class="order-total">'+formatCurrency(echoTotal)+'</strong>'+'</div>'+
                             ' </div>';
             $('.order-product-qty').html(html);
             $('.order-product-ship').html(ship_html);

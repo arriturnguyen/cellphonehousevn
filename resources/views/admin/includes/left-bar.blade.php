@@ -17,9 +17,7 @@
             <i class="material-icons" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
             <ul class="dropdown-menu pull-right">
-              <li><a href="javascript:void(0);"><i
-                  class="material-icons">person</i>{{ __('auth.profile') }}</a></li>
-              <li role="seperator" class="divider"></li>
+              
               <li><a id="link-click-me" href="{{ route('admin.logout')}}"><i class="material-icons">input</i>{{ __('auth.logout') }}</a>
               </li>
             </ul>
@@ -50,7 +48,7 @@
             </ul>
 
             <a href="javascript:void(0);" class="menu-toggle">
-              <i class="material-icons">restaurant</i>
+              <i class="material-icons">perm_media</i>
               <span>{{ __('left-bar.product') }}</span>
             </a>
             <ul class="ml-menu">
@@ -63,8 +61,7 @@
               <span>{{ __('left-bar.order') }}</span>
             </a>
             <ul class="ml-menu">
-              <li><a href="">{{ __('left-bar.create-order') }}</a></li>
-              <li><a href="">{{ __('left-bar.show-orders') }}</a></li>
+              <li><a href="{{ route('admin.orders.index')}}">{{ __('left-bar.show-orders') }}</a></li>
             </ul>
 
           </li>

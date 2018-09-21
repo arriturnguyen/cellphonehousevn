@@ -38,19 +38,26 @@ class OrderController extends Controller
      */
     public function store(CreateOrderRequest $request)
     {
-        $orderData = $request->all();
-        $order = Order::create($orderData);
-        $jsonData = [];
-        $jsonData = json_decode($request->cart);
-        foreach ($jsonData as $product) {
-            OrderDetail::create([
-                'order_id' => $order->id,
-                'product_id' =>$product->id,
-                'product_name' =>$product->name,
-                'price' =>$product->price,
-                'quantity' => $product->quantity
-            ]);
-        }
+        try 
+        {
+            $orderData = $request->all();
+            $order = Order::create($orderData);
+            $jsonData = [];
+            $jsonData = json_decode($request->cart);
+            foreach ($jsonData as $product) {
+                OrderDetail::create([
+                    'order_id' => $order->id,
+                    'product_id' =>$product->id,
+                    'product_name' =>$product->name,
+                    'price' =>$product->price,
+                    'quantity' => $product->quantity
+                ]);
+            }
+            return redirect()->route('orders.create')->with('message', __('home.mess.create_order_success'));
+        } catch (Exception $ex) 
+            {
+                return redirect()->route('orders.create')->with('alert', __('home.mess.create_order_fail'));
+            }
 
     }
 
