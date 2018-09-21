@@ -54,6 +54,7 @@
                   </div>
                 </div>                
               <button type="submit" id="submit" name="submit" class="btn btn-success">{{ __('user.admin.edit.update_user') }}</button>&nbsp;
+              <a href="{{ route('admin.users.index') }}" name="submit" class="btn btn-info waves-effect">{{ __('index.form_cancel') }}</a>
             </form>
           </div>
         </div>

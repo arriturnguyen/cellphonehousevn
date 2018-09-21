@@ -29,7 +29,7 @@ class CreateUserRequest extends FormRequest
             'email'          => 'required|string|email|max:255|unique:users',
             'password'       => 'required|string|min:6',
             'address'       => 'string|max:255',
-            'phone'         => 'regex:/\(?([0-9]{3})\)?([ . -]?)([0-9]{3})\2([0-9]{4})/|unique:users,phone',
+            'phone'         => 'regex:/^0[0-9]{9,10}$/|unique:users,phone',
             'user_type'     => 'required|integer|min:1|max:2',
             'active'        => 'required|boolean',
         ];

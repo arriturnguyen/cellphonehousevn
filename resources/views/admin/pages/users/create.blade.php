@@ -19,32 +19,32 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">Email <span class="text-danger">*</span></label>
                 <div class="form-line">
                   <input type="text" name="email" class="form-control" value="{{old('email')}}" placeholder="" />
                 </div>
               </div>
               <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">Password <span class="text-danger">*</span></label>
                 <div class="form-line">
-                  <input type="password" name="password" class="form-control" placeholder="" />
+                  <input type="password" name="password" class="form-control" value="{{old('password')}}" placeholder="" />
                 </div>
               </div>
               <div class="form-group">
                 <label for="address">Address</label>
                 <div class="form-line">
-                  <input type="text" name="adress" class="form-control" placeholder="" />
+                  <input type="text" name="adress" class="form-control" value="{{old('adress')}}" placeholder="" />
                 </div>
               </div>
               <div class="form-group">
                 <label for="phone">Phone</label>
                 <div class="form-line">
-                  <input type="text" name="phone" class="form-control" placeholder="" />
+                  <input type="text" name="phone" class="form-control" value="{{old('phone')}}" placeholder="" />
                 </div>
               </div>
               <div class="form-group">
                 <div class="demo-radio-button">
-                  <label for="user_type">{{ __('user.admin.role') }}</label><br>
+                  <label for="user_type">{{ __('user.admin.role') }} <span class="text-danger">*</span></label><br>
                   <input name="user_type" type="radio" id="radio_1" value="1">
                   <label for="radio_1">{{ __('user.admin.admin') }}</label>
                   <input name="user_type" type="radio" id="radio_2" value="2" checked>
@@ -53,7 +53,7 @@
               </div>
               <div class="form-group">
                 <div class="demo-radio-button">
-                    <label for="active">{{ __('user.admin.active') }}</label><br>
+                    <label for="active">{{ __('user.admin.active') }} <span class="text-danger">*</span></label><br>
                       <input name="active" type="radio" class="with-gap" id="radio_3" value="1" checked>
                       <label for="radio_3">{{ __('user.admin.active') }}</label>
                       <input name="active" type="radio" class="with-gap" id="radio_4" value="0">
@@ -61,7 +61,7 @@
                   </div>
                 </div>
               <button type="submit" id="submit" name="submit" class="btn btn-success">{{ __('user.admin.create.create_user') }}</button>&nbsp;
-              <button class="btn btn-primary" type="reset">{{ __('user.admin.create.reset_user') }}</button>
+              <a href="{{ route('admin.users.index') }}" name="submit" class="btn btn-info waves-effect">{{ __('index.form_cancel') }}</a>
             </form>
           </div>
         </div>
@@ -70,12 +70,6 @@
   </div>
 </div>
 <!-- #END# Hover Rows -->
-<script type="text/javascript">
-  $(function(){
-    $('button[type=reset]').click(function(){
-        $('#form-user-reg').find('input').attr('value', '');
-    });
-  });
-</script>
+
 @endsection
 
