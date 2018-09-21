@@ -23,8 +23,8 @@
             'delete_success' => 'Delete user successfully',
             'delete_fail' => 'Delete user failed!',
             'create' => [
-                'title' => 'Create User',
-                'form_title' => 'Create Form',
+                'title' => 'User',
+                'form_title' => 'Add user',
                 'enter_username' => 'Enter your user name',
                 'enter_fullname' => 'Enter your full name',
                 'enter_birthday' => 'Enter your birthday',
@@ -43,8 +43,8 @@
                 'update_fail' => 'Update user failed!',
             ],
             'show' => [
-                'title' => 'Show User',
-                'form_title' => 'List Users',
+                'title' => 'User',
+                'form_title' => 'Users list',
                 'edit' => 'Edit',
                 'delete' => 'Delete',
                 'create_user' => 'Create User',

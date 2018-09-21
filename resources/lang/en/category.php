@@ -2,9 +2,7 @@
 return [
     'admin' => [
         'title' => 'Category',
-        'list' => [
-            'title' => 'List Categories'
-        ],
+        'title_list' => 'Categories list',
         'table' => [
             'id' => 'ID',
             'name' => 'Name',
@@ -17,7 +15,7 @@ return [
             'delete' => 'Delete'
         ],
         'add' => [
-            'title' => 'Add Category',
+            'title' => 'Add category',
             'name' => 'Name Category',
             'parent_category' => 'Parent Category',
             'submit' => 'Submit',

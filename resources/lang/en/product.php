@@ -1,9 +1,10 @@
 <?php
   return [
     'admin' => [
+        'delete_success' => 'Deleted product successfully',
       'show' => [
-        'title' => 'Show Products',
-        'form_title' => 'List Products',
+        'title' => 'Product',
+        'form_title' => 'Products list',
         'details_product' => 'Details Product',
         'name' => 'Name',
         'describe' => 'Describe',
@@ -18,7 +19,8 @@
         'in_stock' => 'In Stock',
         'edit' => 'Edit',
         'delete' => 'Delete',
-        'create_product' => 'Create Product',
+        'delete_confirm' => 'Are you sure you want to delete this product?',
+        'create_product' => 'Add product',
       ],
       'edit' => [
         'title' => 'Edit product',
@@ -43,13 +45,14 @@
         'coming_soon' => 'Coming soon',
         'edit' => 'Edit',
         'delete' => 'Delete',
-        'create_product' => 'Create Product',
+        'create_product' => 'Product',
+        'update_product' => 'Update product',
         'update_success' => 'Update success',
         'update_fail' => 'Update fail',
       ],
       'create' => [
         'title' => 'Create product',
-        'form_title' => 'Create form',
+        'form_title' => 'Add product',
         'price' => 'Price',
         'old_price' => 'Old price',
         'description' => 'Description',
@@ -70,9 +73,11 @@
         'coming_soon' => 'Coming soon',
         'edit' => 'Edit',
         'delete' => 'Delete',
-        'create_product' => 'Create Product',
-        'update_success' => 'Update success',
-        'update_fail' => 'Update fail',
+        'create_product' => 'Create product',
+        'reset_product' => 'Reset',
+        'update_success' => 'Updated product successfully',
+        'update_fail' => 'Can not update',
+        'create_success' => 'Created product successfully'
       ]
     ]
   ];
