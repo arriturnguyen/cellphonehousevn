@@ -6,7 +6,7 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="card">
       <div class="header">
-        <h2>{{__('category.admin.title')}}</h2>
+        <h2>{{__('category.admin.title_list')}}</h2>
         <a href="{{ route('admin.categories.create') }}"
             class="btn bg-green waves-effect" style="margin-top: 30px;"> <i
             class="material-icons">add</i><span>{{ __('category.admin.add.create') }}</span>

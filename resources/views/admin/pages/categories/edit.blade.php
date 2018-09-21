@@ -43,6 +43,7 @@
             </div>
           </div>
           <button class="btn btn-success waves-effect" type="submit">Edit</button>
+          <a href="{{ route('admin.categories.index') }}" name="submit" class="btn btn-info waves-effect">{{ __('index.form_cancel') }}</a>
         </form>
       </div>
     </div>

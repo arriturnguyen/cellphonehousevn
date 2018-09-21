@@ -1,5 +1,5 @@
 @extends('admin.layout.master')
-@section('title', __('category.admin.add.title'))
+@section('title', __('category.admin.title'))
 @section('body')
 <div class="row clearfix">
 	<!-- Advanced Validation -->
@@ -9,15 +9,8 @@
       <div class="card">
         <div class="header">
           <h2>
-            <i class="material-icons">add</i>{{__('category.admin.add.title') }}
+            {{__('category.admin.add.title') }}
           </h2>
-          <ul class="header-dropdown m-r--5">
-            <li><a href=""
-              class="btn btn-info waves-effect"
-              style="margin: -14px 14px 0 0px;"> <i class="material-icons"
-                style="color: white;">keyboard_backspace</i> <span>Back</span>
-            </a></li>
-          </ul>
         </div>
         <div class="body">
           <form id="form_advanced_validation" method="POST"
@@ -43,6 +36,7 @@
               </div>
             </div>
             <button class="btn btn-success waves-effect" type="submit">Create</button>
+            <a href="{{ route('admin.categories.index') }}" name="submit" class="btn btn-info waves-effect">{{ __('index.form_cancel') }}</a>
           </form>
         </div>
       </div>
