@@ -35,7 +35,7 @@
             <h4>{{__('product.admin.show.price')}}:</h4>
           </div>
           <div class="col-sm-9">
-            <p class="font-20">{{ $product->price }} VND</p>
+            <p class="font-20">{{ number_format($product->price) }} VND</p>
           </div>
         </div>
         <div class="row clearfix">
@@ -43,7 +43,7 @@
             <h4>{{__('product.admin.show.old_price')}}:</h4>
           </div>
           <div class="col-sm-9">
-            <p class="font-20">{{ $product->old_price }} VND</p>
+            <p class="font-20">{{ number_format($product->old_price) }} VND</p>
           </div>
         </div>
         <div class="row clearfix">
@@ -51,7 +51,29 @@
             <h4>{{__('product.admin.show.category')}}:</h4>
           </div>
           <div class="col-sm-9">
-            <p class="font-20">{{ $product->category_id }}</p>
+            <p class="font-20">{{ $product->category->name }}</p>
+          </div>
+        </div>
+        <div class="row clearfix">
+          <div class="col-sm-3">
+            <h4>{{__('product.admin.show.status')}}:</h4>
+          </div>
+          <div class="col-sm-9">
+            <p class="font-20">
+                  <?php switch ($product->status) {
+                      case "1":
+                          echo "In stock";
+                          break;
+                      case "2":
+                          echo "Out of stock";
+                          break;
+                      case "3":
+                          echo "Coming soon";
+                          break;
+                      default:
+                          echo "Unknown";
+                  }?>
+            </p>
           </div>
         </div>
         <div class="row clearfix">
@@ -67,10 +89,9 @@
             <h4>{{__('product.admin.show.images')}}:</h4>
           </div>
           <div class="col-sm-9">
-            @if ($product->images != NULL)
+            @if (!empty($product->images))
 
-              <?php $images = json_decode($product->images, true); ?>
-              @foreach ($images as $image)
+              @foreach ($product->images as $image)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                   <img height="200" class="img-responsive thumbnail" src="{{ $image }}">
                 </div>

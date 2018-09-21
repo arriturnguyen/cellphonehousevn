@@ -13,44 +13,51 @@
             <form id="demo-form2" method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
-                <label for="name">{{ __('product.admin.create.name') }}</label>
+                <label for="name">{{ __('product.admin.create.name') }} <span class="text-danger">*</span></label>
                 <div class="form-line">
-                  <input type="text" name="name" class="form-control" placeholder="" />
+                  <input type="text" name="name" class="form-control" value="{{ old('name')}}" placeholder="" />
                 </div>
               </div>
               <div class="form-group">
-                <label for="category_id">{{ __('product.admin.create.category_id') }}</label>
+                <label for="category_id">{{ __('product.admin.create.category_id') }} <span class="text-danger">*</span></label>
                 <div class="form-line">
-                  <input type="text" name="category_id" class="form-control" placeholder="" />
+                  <!-- <input type="text" name="category_id" class="form-control" value="{{ old('category_id')}}" placeholder="" /> -->
+                    <select name="category_id" class="form-control">
+                      <option value="">--- Choose a category ---</option>
+                      @foreach ($categories as $id => $name)
+                        <option value="{{ $id }}" {{old('category_id') == $id ? 'selected' : ''}}>{{ $name }}</option>
+                      @endforeach
+                    </select>
                 </div>
               </div>
               <div class="form-group">
-                <label for="price">{{ __('product.admin.create.price') }}</label>
+                <label for="price">{{ __('product.admin.create.price') }} <span class="text-danger">*</span></label>
                 <div class="form-line">
-                  <input type="text" name="price" class="form-control" placeholder="" />
+                  <input type="text" name="price" class="form-control" value="{{ old('price')}}" placeholder="" />
                 </div>
               </div>
               <div class="form-group">
-                <label for="old_price">{{ __('product.admin.create.old_price') }}</label>
+                <label for="old_price">{{ __('product.admin.create.old_price') }} <span class="text-danger">*</span></label>
                 <div class="form-line">
-                  <input type="text" name="old_price" class="form-control" placeholder="" />
+                  <input type="text" name="old_price" class="form-control" value="{{ old('old_price')}}" placeholder="" />
                 </div>
               </div>
               <div class="form-group">
-                <label for="description">{{ __('product.admin.create.description') }}</label>
+                <label for="description">{{ __('product.admin.create.description') }} <span class="text-danger">*</span></label>
                 <div class="form-line">
-                  <input type="text" name="description" class="form-control" placeholder="" />
+                  <!-- <input type="text" name="description" class="form-control" placeholder="" /> -->
+                  <textarea type="text" name="description" value="{{ old('description')}}" class="form-control" placeholder=""></textarea>
                 </div>
               </div>
               <div class="form-group">
-                  <label for="image[]">{{ __('product.admin.create.images') }}</label>
+                  <label for="image[]">{{ __('product.admin.create.images') }} <span class="text-danger">*</span></label>
                   <div class="form-line">
                     <input type="file" name="image[]" class="form-control" multiple/>
                   </div>
               </div>
               <div class="form-group">
                 <div class="demo-radio-button">
-                  <label for="status">{{ __('product.admin.create.status') }}</label><br>
+                  <label for="status">{{ __('product.admin.create.status') }} <span class="text-danger">*</span></label><br>
                   <input name="status" type="radio" id="radio_1" value="1">
                   <label for="radio_1">{{ __('product.admin.create.in_stock') }}</label>
                   <input name="status" type="radio" id="radio_2" value="2">
@@ -61,13 +68,13 @@
               </div>
               
               <div class="form-group">
-                <label for="in_stock">{{ __('product.admin.create.in_stock') }}</label>
+                <label for="in_stock">{{ __('product.admin.create.in_stock') }} <span class="text-danger">*</span></label>
                   <div class="form-line">
-                    <input type="text" name="in_stock" class="form-control" placeholder="" />
+                    <input type="text" name="in_stock" class="form-control" value="{{ old('in_stock')}}" placeholder="" />
                   </div>
               </div>
               <button type="submit" id="submit" name="submit" class="btn btn-success">{{ __('product.admin.create.create_product') }}</button>&nbsp;
-              <button class="btn btn-primary" type="reset">{{ __('product.admin.create.reset_product') }}</button>
+              <a href="{{ route('admin.products.index') }}" name="submit" class="btn btn-info waves-effect">{{ __('index.form_cancel') }}</a>
             </form>
           </div>
         </div>
@@ -76,4 +83,5 @@
   </div>
 </div>
 <!-- #END# Hover Rows -->
+
 @endsection

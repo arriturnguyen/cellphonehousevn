@@ -40,8 +40,7 @@
 										<div class="product-img">
 											
 											@if ($product->images != NULL)
-							                  <?php $images = json_decode($product->images, true); ?>
-							                  <img src="{{ $images[0] }}">
+							                  <img src="{{ $product->images[0] }}">
 							                @else
 							                  <img src="images/products/no-image.jpg"></th>
 							                @endif
@@ -54,7 +53,7 @@
 										<div class="product-body">
 											<p class="product-category">Category</p>
 											<h3 class="product-name"><a href="{{route('product.show', $product->id)}}">{{$product->name}}</a></h3>
-											<h4 class="product-price">{{$product->price}} <del class="product-old-price">{{$product->old_price}}</del></h4>
+											<h4 class="product-price">{{number_format($product->price)}} <del class="product-old-price">{{number_format($product->old_price)}}</del></h4>
 											<div class="product-rating">
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>

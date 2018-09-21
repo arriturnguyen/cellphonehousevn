@@ -31,10 +31,9 @@
                 <div class="row">
                     <!-- Product main img -->
                     @if ($product->images != NULL)
-                      <?php $images = json_decode($product->images, true); ?>
                       <div class="col-md-5 col-md-push-2">
                             <div id="product-main-img">
-                            @foreach ($images as $image)
+                            @foreach ($product->images as $image)
                                 <div class="product-preview">
                                 <img src="{{ $image }}" alt="">
                                 </div> 
@@ -49,10 +48,9 @@
 
                     <!-- Product thumb imgs -->
                     @if ($product->images != NULL)
-                      <?php $images = json_decode($product->images, true); ?>
                       <div class="col-md-2  col-md-pull-5">
                             <div id="product-imgs">
-                            @foreach ($images as $image)
+                            @foreach ($product->images as $image)
                                 <div class="product-preview">
                                 <img src="{{ $image }}" alt="">
                                 </div> 
@@ -80,7 +78,7 @@
                                 <a class="review-link" href="#">10 Review(s) | Add your review</a>
                             </div>
                             <div>
-                                <h3 class="product-price">{{$product->price}} <del class="product-old-price">{{$product->old_price}}</del></h3>
+                                <h3 class="product-price">{{ number_format($product->price) }} <del class="product-old-price">{{ number_format($product->old_price) }}</del></h3>
                                 <span class="product-available">
                                     @if ($product->in_stock > 0)
                                         IN STOCK
@@ -119,7 +117,7 @@
                                 <button class="add-to-cart-btn" id="{{$product->id}}" data-id="{{$product->id}}"
                                 data-name="{{$product->name}}"
                                 data-price="{{$product->price}}"
-                                data-image="<?php $images = json_decode($product->images, true); echo $images[0]; ?>" ><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                data-image="{{$product->images[0]}}" ><i class="fa fa-shopping-cart"></i> add to cart</button>
                                 <h1 class="tot">0</h1>
                             </div>
 
@@ -370,6 +368,11 @@
     var quantity=0;
     $(document).ready(function() {
         quantity= parseInt($('#Soluong').val());
+
+        /* Cart item qty update */
+        // cart = JSON.parse(localStorage.getItem('cart'));
+        // html = cart.length;
+        // $('.qty').html(html);
     
     });
     if(JSON.parse(localStorage.getItem('cart'))) {
@@ -405,6 +408,11 @@
         
         console.log('sau khi addCart', cart);
         localStorage.cart=JSON.stringify(cart);
+
+        /* Cart item qty update */
+        // cart = JSON.parse(localStorage.getItem('cart'));
+        // html = cart.length;
+        // $('.qty').html(html);
     });
 
     function findProductInCartById(cart, product_id){
