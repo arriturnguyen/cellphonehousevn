@@ -1,4 +1,8 @@
-var cart = JSON.parse(localStorage.getItem('cart'));
+if(JSON.parse(localStorage.getItem('cart'))) {
+        cart= JSON.parse(localStorage.getItem('cart'));
+    } else {
+        var cart=[];
+    };
 
 /* Set rates + misc */
 var taxRate = 0.05;
@@ -15,8 +19,8 @@ $(document).ready(function() {
     quantity= parseInt($(this).val());
     var product_id =$(this).attr('data-product-id');
     var result= findProductInCartById(cart, product_id);
-    if( quantity>10 || quantity<1) {
-      alert('this field must between 1,10');
+    if(quantity>10 || quantity<1 || isNaN(quantity)) {
+      alert('This field must between 1 and 10');
       $('.product-quantity input').val(cart[result].quantity);
     } else {
       updateQuantity(this);
@@ -105,26 +109,30 @@ function recalculateCart()
     sumsubtotal += parseFloat($(this).children('.product-line-price-sub').text());
   });
   
-  /* Calculate totals */
-  var total = sumsubtotal + shippingRate;
-  
-  /* Convert cac bien int sang string de dung duoc ham formatCurrency */
-  var echoSumsubtotal = sumsubtotal.toString();
-  var echoShippingRate = shippingRate.toString();
-  var echoTotal = total.toString();
+  if(sumsubtotal == 0){
+    $('.checkout').fadeOut(fadeTime);
+    $('#cart-subtotal').fadeOut(fadeTime);
+    $('#cart-shipping').fadeOut(fadeTime);
+    $('#cart-total').fadeOut(fadeTime);  
+    $('.totals-value').fadeOut(fadeTime);
+  } else {
+      /* Calculate totals */
+    var total = sumsubtotal + shippingRate;
+    
+    /* Convert cac bien int sang string de dung duoc ham formatCurrency */
+    var echoSumsubtotal = sumsubtotal.toString();
+    var echoShippingRate = shippingRate.toString();
+    var echoTotal = total.toString();
 
-  /* Update totals display */
-  $('.totals-value').fadeOut(fadeTime, function() {
-    $('#cart-subtotal').html(formatCurrency(echoSumsubtotal));
-    $('#cart-shipping').html(formatCurrency(echoShippingRate));
-    $('#cart-total').html(formatCurrency(echoTotal));
-    if(total == 0){
-      $('.checkout').fadeOut(fadeTime);
-    }else{
+    /* Update totals display */
+    $('.totals-value').fadeOut(fadeTime, function() {
+      $('#cart-subtotal').html(formatCurrency(echoSumsubtotal));
+      $('#cart-shipping').html(formatCurrency(echoShippingRate));
+      $('#cart-total').html(formatCurrency(echoTotal));  
       $('.checkout').fadeIn(fadeTime);
-    }
-    $('.totals-value').fadeIn(fadeTime);
-  });
+      $('.totals-value').fadeIn(fadeTime);
+    });
+  }
 }
 
 

@@ -109,7 +109,7 @@
                                     Qty
                                     <div class="input-number">
                                         <!-- <input type="number"> -->
-                                        <input id="Soluong" type="number" class="form-control" placeholder="{{__('user/product.details.quantity')}}" name="quantity" value="1"  />
+                                        <input id="Soluong" type="number" class="form-control" placeholder="" name="quantity" value="1" />
                                         <!-- <span class="qty-up">+</span>
                                         <span class="qty-down">-</span> -->
                                     </div>
@@ -118,7 +118,6 @@
                                 data-name="{{$product->name}}"
                                 data-price="{{$product->price}}"
                                 data-image="{{$product->images[0]}}" ><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                <h1 class="tot">0</h1>
                             </div>
 
                             <ul class="product-btns">
@@ -382,6 +381,10 @@
     };
     $('#Soluong').on('change', function(){
         quantity= parseInt($(this).val());
+        if(quantity>10 || quantity<1 || isNaN(quantity)) {
+          alert('This field must between 1 and 10');
+          $('#Soluong').val(1);
+        }
     });
     $('button').on('click', function(){
         // alert('d');
@@ -392,8 +395,14 @@
             var result= findProductInCartById(cart, product_id);
             console.log('vi tri sp tim thay', result);
             if(result!==false) {
-                cart[result].quantity+= parseInt(quantity);
-                console.log('tang so luong',cart);
+                alert('Do you want to add '+parseInt(quantity)+' item to your cart?');
+                var qtySumCheck = cart[result].quantity + parseInt(quantity);
+                if (qtySumCheck>10 || qtySumCheck<1 || isNaN(qtySumCheck)) {
+                    alert('Your cart limit reached (Min 1 item, max 10 items for each product)');
+                } else {
+                    cart[result].quantity+= parseInt(quantity);
+                    console.log('tang so luong',cart);
+                    }
             } else {
                 console.log('chua co sp do');
                 addCart(cart, $(this));
@@ -432,7 +441,7 @@
         return false;
     };
     function addCart(cart, data){
-        alert('Soluong'+quantity);
+        alert('Do you want to add '+quantity+' item to your cart?');
         var product= {'image': data.attr('data-image'), 'name': data.attr('data-name'), 'id' : data.attr('id'), 'price' : data.attr('data-price'), 'quantity' : quantity };
         cart.push(product);
     }

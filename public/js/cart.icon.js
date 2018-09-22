@@ -1,4 +1,9 @@
 /* Cart icon qty update */
+if(JSON.parse(localStorage.getItem('cart'))) {
+        cart= JSON.parse(localStorage.getItem('cart'));
+    } else {
+        var cart=[];
+    };
 $(document).ready(function() {
 	var totalQty = 0;
 	if(cart.length) {

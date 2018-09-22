@@ -7,7 +7,8 @@
 
 @section('content')
 
-  <h1>Shopping Cart</h1>
+  <h1 class="your-cart"></h1>
+
 
 <div class="shopping-cart">
 
