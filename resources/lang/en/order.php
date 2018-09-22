@@ -34,7 +34,9 @@
                 'shipped' => 'SHIPPED',
                 'cancel' => 'CANCEL'
             ],
-            'edit' => 'Updated successfully'
+            'edit' => 'Updated successfully',
+            'msg_del' => 'Are you sure you want to delete?',
+            'del' => 'Deleted successfully'
       ]
     ]  
   ];

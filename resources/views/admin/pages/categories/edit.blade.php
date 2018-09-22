@@ -10,13 +10,7 @@
         <h2>
           <i class="material-icons">mode_edit</i>{{__('category.admin.edit.title') }}
         </h2>
-        <ul class="header-dropdown m-r--5">
-          <li><a href=""
-            class="btn btn-info waves-effect"
-            style="margin: -14px 14px 0 0px;"> <i class="material-icons"
-              style="color: white;">keyboard_backspace</i> <span>Back</span>
-          </a></li>
-        </ul>
+        
       </div>
       <div class="body">
         <form id="form_advanced_validation" method="POST"

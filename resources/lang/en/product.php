@@ -19,7 +19,7 @@
         'in_stock' => 'In Stock',
         'edit' => 'Edit',
         'delete' => 'Delete',
-        'delete_confirm' => 'Are you sure you want to delete this product?',
+        'delete_confirm' => 'Are you sure you want to delete?',
         'create_product' => 'Add product',
       ],
       'edit' => [
@@ -47,7 +47,7 @@
         'delete' => 'Delete',
         'create_product' => 'Product',
         'update_product' => 'Update product',
-        'update_success' => 'Update success',
+        'update_success' => 'Update successfully',
         'update_fail' => 'Update fail',
       ],
       'create' => [
