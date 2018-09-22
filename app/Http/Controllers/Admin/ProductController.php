@@ -62,7 +62,7 @@ class ProductController extends Controller
                 // $images = json_encode($imageData);
                 $images = $imageData;
                 // dd($images);
-                $productData = $request->all();
+                $productData = $request->except(["_token", "image", "submit"]);;
                 $productData['images']= $images;
                 // dd($productData);
                 Product::create($productData);
