@@ -58,7 +58,9 @@ class ProductController extends Controller
                     $image->move(public_path('/images/products/'), $newFilename);
                     array_push($imageData, $newFilename);
                 }
-                $images = json_encode($imageData);
+                // Array & JSON Casting trong Product model ngoai auto json_decode con json_encode du lieu khi nhap vao => Du thua 1 lan encode => Bug tai show product
+                // $images = json_encode($imageData);
+                $images = $imageData;
                 // dd($images);
                 $productData = $request->all();
                 $productData['images']= $images;
