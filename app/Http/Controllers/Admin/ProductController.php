@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdateProductRequest;
 use App\Http\Requests\Admin\CreateProductRequest;
 
-
 class ProductController extends Controller
 {
     /**
@@ -190,11 +189,17 @@ class ProductController extends Controller
             $imageID = $request->imageID;
             $product = Product::findOrFail($request->productID);
             $images = $product->images;
+            // Delete file image in storage
+            // Storage::delete('public/'.$images[$imageID]);
+            // Storage::disk('public')->delete('public/'.$images[$imageID]);
+            // dd($images[$imageID]);
+            // File::delete('public/'.$images[$imageID]);
+            unlink(public_path($images[$imageID]));
             unset($images[$imageID]);
+            $images = array_values($images);
             $product->images = $images;
             $product->save();
 
-            // Delete file image
             return response([
                 'status' => true
             ], 200);

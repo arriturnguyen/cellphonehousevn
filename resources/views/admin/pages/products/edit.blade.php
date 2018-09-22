@@ -76,12 +76,20 @@
             </form>
                     <div><br>
                       <h5>Product's old image</h5>
-                    @foreach ($product->images as $index => $image)
-                      <div id="product-image{{$index}}" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <img class="img-responsive thumbnail"  src="{{ $image }}"/>
-                        <span onclick="delProductImage({{$product->id}}, {{$index}})">x</span>
-                      </div>
-                    @endforeach
+                      @if (!empty($product->images))
+                        @foreach ($product->images as $index => $image)
+                          <div id="product-image{{$index}}" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <img class="img-responsive thumbnail"  src="{{ $image }}"/>
+                            
+                            <button class="material-icons bg-red" onclick="delProductImage({{$product->id}}, {{$index}})">delete_forever</button>
+                          
+                          </div>
+                        @endforeach
+                      @else
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                          <img class="img-responsive thumbnail" src="images/products/no-image.jpg">
+                        </div>
+                      @endif
                     </div>
           </div>
         </div>
