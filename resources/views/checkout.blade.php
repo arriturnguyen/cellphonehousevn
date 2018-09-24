@@ -16,17 +16,20 @@
                     <div class="section-title">
                         <h3 class="title">Billing address</h3>
                     </div>
-                    <form method="POST" action="{{ route('orders.store') }}">
+                    <form id="order-submit-form" method="POST" action="{{ route('orders.store') }}">
                     @csrf
                     <div class="form-group">
-                        <input class="input" type="text" name="user_name" value="{{ old('name')}}" placeholder="Name" required>
+                        <label for="name">Name <span class="text-danger">*</span></label>
+                        <input class="input" type="text" name="user_name" value="{{ old('name')}}" placeholder="" required>
                     </div>
                     
                     <div class="form-group">
-                        <input class="input" type="text" name="address" value="{{ old('address')}}" placeholder="Address" required>
+                        <label for="name">Address <span class="text-danger">*</span></label>
+                        <input class="input" type="text" name="address" value="{{ old('address')}}" placeholder="" required>
                     </div>
                     <div class="form-group">
-                        <input class="input" type="tel" name="phone" value="{{ old('phone')}}" placeholder="Phone" required>
+                        <label for="name">Phone <span class="text-danger">*</span></label>
+                        <input class="input" type="tel" name="phone" value="{{ old('phone')}}" placeholder="" required>
                     </div>
                     <div class="form-group">
                         <input type="text" name="cart" id="cart" readonly hidden>
@@ -99,7 +102,7 @@
                     </div>
                 </div>
 
-                <button type="submit" name="submit" class="primary-btn order-submit">Place order</button>
+                <button type="submit" name="submit" id="order-submit-button" class="primary-btn order-submit">Place order</button>
             </div>
             </form>
             <!-- /Order Details -->
@@ -111,6 +114,7 @@
 <!-- /SECTION -->
 
 <script type="text/javascript">
+    var fadeTime = 300;
     $(document).ready(function() {
         console.log(cart);
         showCart(cart);
@@ -165,8 +169,10 @@
             
         }else {
             $('.order-product-qty').html('Your Cart is empty');
+            $('#order-submit-button').fadeOut(fadeTime);
         }
-    }
+    }   
+
 </script>
 
 @endsection
