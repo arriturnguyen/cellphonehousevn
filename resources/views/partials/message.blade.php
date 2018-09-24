@@ -28,7 +28,7 @@
       </div>
     @endif
     @if (session('alert'))
-      <div class="alert bg-red alert-dismissible" role="alert" style="color: red">
+      <div class="alert bg-red alert-dismissible" role="alert" style="color: red; background-color: #ff9600">
         <button type="button" class="close" data-dismiss="alert"
           aria-label="Close">
           <span aria-hidden="true">×</span>
