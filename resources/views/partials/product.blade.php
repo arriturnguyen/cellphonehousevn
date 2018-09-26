@@ -37,7 +37,8 @@
 							<?php foreach ($products as $product){ ?>  
 								<div class="col-md-<?php echo $bootstrapColWidth; ?>">
 							        <div class="product">
-										<div class="product-img">
+							        	<a href="{{route('product.show', $product->id)}}">
+										<div href="{{route('product.show', $product->id)}}" class="product-img">
 											
 											@if ($product->images != NULL)
 							                  <img src="{{ $product->images[0] }}">
@@ -46,14 +47,19 @@
 							                @endif
 
 											<div class="product-label">
-												<span class="sale">-30%</span>
+												@if (($product->price)<($product->old_price))
+												<span class="sale">-{{floor(100-(($product->price)/($product->old_price))*100)}}%</span>
+												@endif
 												<span class="new">NEW</span>
 											</div>
 										</div>
+										</a>
 										<div class="product-body">
-											<p class="product-category">Category</p>
+											<p class="product-category">{{ $product->category->name }}</p>
 											<h3 class="product-name"><a href="{{route('product.show', $product->id)}}">{{$product->name}}</a></h3>
-											<h4 class="product-price">{{number_format($product->price)}} <del class="product-old-price">{{number_format($product->old_price)}}</del></h4>
+											<h4 class="product-price">{{number_format($product->price)}} ₫ 
+											<br>	
+											<del class="product-old-price">{{number_format($product->old_price)}} ₫</del></h4>
 											<div class="product-rating">
 												<i class="fa fa-star"></i>
 												<i class="fa fa-star"></i>
@@ -68,7 +74,10 @@
 											</div>
 										</div>
 										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											<button class="add-to-cart-btn" id="{{$product->id}}" data-id="{{$product->id}}"
+			                                data-name="{{$product->name}}"
+			                                data-price="{{$product->price}}"
+			                                data-image="{{$product->images[0]}}" ><i class="fa fa-shopping-cart"></i> add to cart</button>
 										</div>
 							        </div>
 							    </div>    

@@ -81,7 +81,7 @@
                           <div id="product-image{{$index}}" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                             <img class="img-responsive thumbnail"  src="{{ $image }}"/>
                             
-                            <button class="material-icons bg-red" onclick=" confirm('{{__('product.admin.show.delete_confirm')}}'); delProductImage({{$product->id}}, {{$index}}); ">delete_forever</button>
+                            <button class="material-icons bg-red" onclick=" if(confirm('{{__('product.admin.show.delete_confirm')}}')) {delProductImage({{$product->id}}, {{$index}}); }; ">delete_forever</button>
                           
                           </div>
                         @endforeach

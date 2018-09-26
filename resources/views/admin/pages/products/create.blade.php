@@ -46,7 +46,7 @@
                 <label for="description">{{ __('product.admin.create.description') }} <span class="text-danger">*</span></label>
                 <div class="form-line">
                   <!-- <input type="text" name="description" class="form-control" placeholder="" /> -->
-                  <textarea type="text" name="description" value="{{ old('description')}}" class="form-control" placeholder=""></textarea>
+                  <textarea type="text" name="description" class="form-control" placeholder="">{{ old('description')}}</textarea>
                 </div>
               </div>
               <div class="form-group">
@@ -58,11 +58,11 @@
               <div class="form-group">
                 <div class="demo-radio-button">
                   <label for="status">{{ __('product.admin.create.status') }} <span class="text-danger">*</span></label><br>
-                  <input name="status" type="radio" id="radio_1" value="1">
+                  <input name="status" type="radio" id="radio_1" value="1" @if (old('status') == 1) checked @endif>
                   <label for="radio_1">{{ __('product.admin.create.in_stock') }}</label>
-                  <input name="status" type="radio" id="radio_2" value="2">
+                  <input name="status" type="radio" id="radio_2" value="2" @if (old('status') == 2) checked @endif>
                   <label for="radio_2">{{ __('product.admin.create.out_stock') }}</label>
-                  <input name="status" type="radio" id="radio_3" value="3">
+                  <input name="status" type="radio" id="radio_3" value="3" @if (old('status') == 3) checked @endif>
                   <label for="radio_3">{{ __('product.admin.create.coming_soon') }}</label>
                 </div>
               </div>

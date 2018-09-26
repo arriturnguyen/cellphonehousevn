@@ -23,9 +23,9 @@
                 <th>{{__('product.admin.show.name')}}</th>
                 <th>{{__('product.admin.show.price')}}</th>
                 <th>{{__('product.admin.show.old_price')}}</th>
-                <th>{{__('product.admin.show.description')}}</th>
                 <th>{{__('product.admin.show.status')}}</th>
                 <th>{{__('product.admin.show.in_stock')}}</th>
+                <th>{{__('product.admin.show.description')}}</th>
                 <th>{{__('product.admin.show.edit')}}</th>
                 <th>{{__('product.admin.show.delete')}}</th>
               </tr>
@@ -40,10 +40,8 @@
                   <th><img class="img-responsive thumbnail" src="images/products/no-image.jpg"></th>
                 @endif
                 <td>{{ $product->name }}</td>
-                <td>{{ $product->price }}</td>
-                <td>{{ $product->old_price }}</td>
-                <td><a id="description" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float"
-                   href="{{route('admin.products.show', $product->id)}}"><i class="material-icons">remove_red_eye</i></a></td>
+                <td>{{ number_format($product->price) }} ₫</td>
+                <td>{{ number_format($product->old_price) }} ₫</td>
                 <td>
                   <?php switch ($product->status) {
                       case "1":
@@ -60,6 +58,8 @@
                   }?>
                 </td>
                 <td>{{ $product->in_stock }}</td>
+                <td><a id="description" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float"
+                   href="{{route('admin.products.show', $product->id)}}"><i class="material-icons">remove_red_eye</i></a></td>
                 <td><a
                   href="{{route('admin.products.edit', $product->id)}}"
                   class="btn bg-yellow btn-circle waves-effect waves-circle waves-float">

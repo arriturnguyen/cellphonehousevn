@@ -35,7 +35,6 @@
 		<script src="{{asset('js/jquery.zoom.min.js')}}"></script>
 		<script src="{{asset('js/main.js')}}"></script> -->
 
-		<!-- Locutus number format -->
 
 		@yield('css')
 		
@@ -77,7 +76,7 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="./img/logo.png" alt="">
+									<img src="{{asset('./img/logo.png')}}" alt="">
 								</a>
 							</div>
 						</div>
@@ -150,7 +149,7 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
+						<li class="active"><a href="">Home</a></li>
 						<li><a href="#">Hot Deals</a></li>
 						<li><a href="#">Categories</a></li>
 						<li><a href="#">Laptops</a></li>
@@ -312,6 +311,6 @@
 
 		<!-- Display cart total quatity by icon -->
 		<script src="{{asset('js/cart.icon.js')}}"></script>
-		
+
 	</body>
 </html>

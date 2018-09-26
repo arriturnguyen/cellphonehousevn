@@ -45,18 +45,18 @@
               <div class="form-group">
                 <div class="demo-radio-button">
                   <label for="user_type">{{ __('user.admin.role') }} <span class="text-danger">*</span></label><br>
-                  <input name="user_type" type="radio" id="radio_1" value="1">
+                  <input name="user_type" type="radio" id="radio_1" value="1" @if (old('user_type') == 1) checked @endif>
                   <label for="radio_1">{{ __('user.admin.admin') }}</label>
-                  <input name="user_type" type="radio" id="radio_2" value="2" checked>
+                  <input name="user_type" type="radio" id="radio_2" value="2" @if (old('user_type') == 2) checked @endif>
                   <label for="radio_2">{{ __('user.admin.user') }}</label>
                 </div>
               </div>
               <div class="form-group">
                 <div class="demo-radio-button">
                     <label for="active">{{ __('user.admin.active') }} <span class="text-danger">*</span></label><br>
-                      <input name="active" type="radio" class="with-gap" id="radio_3" value="1" checked>
+                      <input name="active" type="radio" class="with-gap" id="radio_3" value="1" @if (old('active') == 1) checked @endif>
                       <label for="radio_3">{{ __('user.admin.active') }}</label>
-                      <input name="active" type="radio" class="with-gap" id="radio_4" value="0">
+                      <input name="active" type="radio" class="with-gap" id="radio_4" value="0" @if (old('active') == 0) checked @endif>
                       <label for="radio_4">{{ __('user.admin.inactive') }}</label>
                   </div>
                 </div>

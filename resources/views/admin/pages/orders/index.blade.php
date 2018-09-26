@@ -31,7 +31,7 @@
                 <td>{{ $order->user_name }}</td>
                 <td>{{ $order->address }}</td>
                 <td>{{ $order->phone }}</td>
-                <td>{{ $order->amount }}</td>
+                <td>{{ number_format($order->amount) }} ₫</td>
                 <td>{{ $order->processingStatus() }}</td>
                 <td>
                   <a id="details" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" href="{{route('admin.orders.show', $order->id)}}">

@@ -27,7 +27,7 @@ class UpdateUserRequest extends FormRequest
         return [
             'name'          => 'string|max:255',
             'address'       => 'string|max:255',
-            'phone'         => 'regex:/\(?([0-9]{3})\)?([ . -]?)([0-9]{3})\2([0-9]{4})/',
+            'phone'         => 'regex:/^0[0-9]{9,10}$/|unique:users,phone',
             'user_type'     => 'required|integer|min:1|max:2',
             'active'        => 'required|boolean',
         ];

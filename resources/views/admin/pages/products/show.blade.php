@@ -35,7 +35,7 @@
             <h4>{{__('product.admin.show.price')}}:</h4>
           </div>
           <div class="col-sm-9">
-            <p class="font-20">{{ number_format($product->price) }} VND</p>
+            <p class="font-20">{{ number_format($product->price) }} ₫</p>
           </div>
         </div>
         <div class="row clearfix">
@@ -43,7 +43,7 @@
             <h4>{{__('product.admin.show.old_price')}}:</h4>
           </div>
           <div class="col-sm-9">
-            <p class="font-20">{{ number_format($product->old_price) }} VND</p>
+            <p class="font-20">{{ number_format($product->old_price) }} ₫</p>
           </div>
         </div>
         <div class="row clearfix">

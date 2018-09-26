@@ -137,6 +137,7 @@ class ProductController extends Controller
     {
         try 
         {
+            $updateProduct = $request->except(["_token", "_method", "submit"]);
             if ($request->hasFile('image')) 
             {
                 $images = $product->images;
@@ -149,13 +150,9 @@ class ProductController extends Controller
                     array_push($images, $newFilename);
                     $product->images = $images;
                 }
-
-                $updateProduct = $request->except(["_token", "_method", "submit"]);
                 $updateProduct['images']= $images;
-                
-                $product->update($updateProduct);
             }
-           
+            $product->update($updateProduct);
             return redirect()->route('admin.products.index')->with('message', __('product.admin.edit.update_success'));
         } catch (Exception $e) {
             return redirect()->route('admin.products.index')->with('alert', __('product.admin.edit.update_fail'));

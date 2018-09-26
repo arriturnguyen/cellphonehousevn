@@ -10,7 +10,7 @@
       'submit_time' => 'Submitted time',
       'quantity' => 'Quantity',
       'total' => 'Total',
-      'currency' => 'VND',
+      'currency' => '₫',
       'table' => [
         'show' => 'Detail',
         'delete' => 'Delete'

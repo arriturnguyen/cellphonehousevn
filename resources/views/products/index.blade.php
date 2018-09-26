@@ -2,11 +2,11 @@
 
 @section('content')
 		<!-- BREADCRUMB -->
-		<div id="breadcrumb" class="section">
+		<!-- <div id="breadcrumb" class="section"> -->
 			<!-- container -->
-			<div class="container">
+			<!-- <div class="container"> -->
 				<!-- row -->
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
 							<li><a href="#">Home</a></li>
@@ -15,11 +15,11 @@
 							<li class="active">Headphones (227,490 Results)</li>
 						</ul>
 					</div>
-				</div>
+				</div> -->
 				<!-- /row -->
-			</div>
+			<!-- </div> -->
 			<!-- /container -->
-		</div>
+		<!-- </div> -->
 		<!-- /BREADCRUMB -->
 
 		<!-- SECTION -->
@@ -217,4 +217,84 @@
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
+<script type="text/javascript">
+
+    var quantity = 0;
+    $(document).ready(function() {
+        quantity = 1;
+
+        /* Cart item qty update */
+        // cart = JSON.parse(localStorage.getItem('cart'));
+        // html = cart.length;
+        // $('.qty').html(html);
+    
+    });
+    if(JSON.parse(localStorage.getItem('cart'))) {
+        cart= JSON.parse(localStorage.getItem('cart'));
+    } else {
+        var cart=[];
+    };
+    
+    $('button').on('click', function(){
+        // alert('d');
+        // var product_name= $(this).attr('data-name');
+        // var product_price= $(this).attr('data-name');
+        var product_id =$(this).attr('id');
+        if (cart.length) {
+            var result= findProductInCartById(cart, product_id);
+            console.log('vi tri sp tim thay', result);
+            if(result!==false) {
+                // alert('Do you want to add '+parseInt(quantity)+' item to your cart?');
+                var qtySumCheck = cart[result].quantity + parseInt(quantity);
+                if (qtySumCheck>10 || qtySumCheck<1 || isNaN(qtySumCheck)) {
+                    alert('Your cart limit reached (Min 1 item, max 10 items for each product)');
+                } else {
+                    cart[result].quantity+= parseInt(quantity);
+                    console.log('tang so luong',cart);
+                    }
+            } else {
+                console.log('chua co sp do');
+                addCart(cart, $(this));
+            }
+        } else {
+            console.log('chua co cart');
+            addCart(cart, $(this));
+        }
+        
+        // console.log(product);
+        
+        
+        console.log('sau khi addCart', cart);
+        localStorage.cart=JSON.stringify(cart);
+
+        /* Cart item qty update */
+        // cart = JSON.parse(localStorage.getItem('cart'));
+        // html = cart.length;
+        // $('.qty').html(html);
+    });
+
+    function findProductInCartById(cart, product_id){
+
+        for (var i = 0; i < cart.length; i++) {
+            console.log('id sp moi: ', product_id, 'id sp for:', cart[i].id);
+            if (cart[i].id===product_id) {
+                console.log('tim thay');
+                return i;
+            } else {
+                
+                continue;
+            }
+
+        }
+        console.log('ko tim thay');
+        return false;
+    };
+
+    function addCart(cart, data){
+        // alert('Do you want to add '+quantity+' item to your cart?');
+        var product = {'image': data.attr('data-image'), 'name': data.attr('data-name'), 'id' : data.attr('id'), 'price' : data.attr('data-price'), 'quantity' : quantity };
+        cart.push(product);
+    }
+
+</script>		
 @endsection

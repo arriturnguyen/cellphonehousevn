@@ -13,9 +13,9 @@
 
 DB::enableQueryLog();
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 Route::get('/register', ['uses' => 'RegisterController@index', 'as' => 'auth.register']);
 
@@ -44,7 +44,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 });
 
 Route::group(['namespace' => 'Home'], function () {
-    // Route::get('/', 'HomeController@index')->name('user.home');
+    Route::get('/', 'HomeController@index')->name('home');
     // Route::resource('products', 'ProductController');
     // Route::get('/profile', 'UserController@index')->name('user.info');
     Route::get('/cart', 'CartController@index')->name('cart');

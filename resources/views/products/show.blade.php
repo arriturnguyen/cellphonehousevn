@@ -78,7 +78,9 @@
                                 <a class="review-link" href="#">10 Review(s) | Add your review</a>
                             </div>
                             <div>
-                                <h3 class="product-price">{{ number_format($product->price) }} <del class="product-old-price">{{ number_format($product->old_price) }}</del></h3>
+                                <h3 class="product-price">{{ number_format($product->price) }} ₫
+                                <br>    
+                                <del class="product-old-price">{{ number_format($product->old_price) }} ₫</del></h3>
                                 <span class="product-available">
                                     @if ($product->in_stock > 0)
                                         IN STOCK
@@ -363,7 +365,9 @@
             <!-- /container -->
         </div>
         <!-- /SECTION -->
+
 <script type="text/javascript">
+
     var quantity=0;
     $(document).ready(function() {
         quantity= parseInt($('#Soluong').val());
@@ -395,7 +399,7 @@
             var result= findProductInCartById(cart, product_id);
             console.log('vi tri sp tim thay', result);
             if(result!==false) {
-                alert('Do you want to add '+parseInt(quantity)+' item to your cart?');
+                // alert('Do you want to add '+parseInt(quantity)+' item to your cart?');
                 var qtySumCheck = cart[result].quantity + parseInt(quantity);
                 if (qtySumCheck>10 || qtySumCheck<1 || isNaN(qtySumCheck)) {
                     alert('Your cart limit reached (Min 1 item, max 10 items for each product)');
@@ -440,10 +444,13 @@
         console.log('ko tim thay');
         return false;
     };
+
     function addCart(cart, data){
-        alert('Do you want to add '+quantity+' item to your cart?');
+        // alert('Do you want to add '+quantity+' item to your cart?');
         var product= {'image': data.attr('data-image'), 'name': data.attr('data-name'), 'id' : data.attr('id'), 'price' : data.attr('data-price'), 'quantity' : quantity };
         cart.push(product);
     }
+
 </script>
+
 @endsection

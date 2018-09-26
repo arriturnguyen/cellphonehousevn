@@ -77,7 +77,7 @@ class OrderController extends Controller
                 $order->status = $request->status;
             
             $order->save();
-            return redirect()->route('admin.orders.show', $order->id)->with('message', __('order.admin.message.edit'));
+            return redirect()->route('admin.orders.index', $order->id)->with('message', __('order.admin.message.edit'));
         } catch (Exception $ex) {
             return redirect()->route('admin.orders.show', $order->id)->with('message', __('order.admin.message.edit_fail'));
         }
