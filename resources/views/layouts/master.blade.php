@@ -35,9 +35,7 @@
 		<script src="{{asset('js/jquery.zoom.min.js')}}"></script>
 		<script src="{{asset('js/main.js')}}"></script> -->
 
-
 		@yield('css')
-		
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -54,12 +52,11 @@
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-						<li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+						<li><a href="#"><i class="fa fa-phone"></i> +84-169-6229-302</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i> mrdatmoon@gmail.com</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i> 189 Han Thuyen Street </a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
 						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
 					</ul>
 				</div>
@@ -85,15 +82,15 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
-									<select class="input-select">
+								<!-- <form> -->
+									<!-- <select class="input-select">
 										<option value="0">All Categories</option>
 										<option value="1">Category 01</option>
 										<option value="1">Category 02</option>
-									</select>
-									<input class="input" placeholder="Search here">
-									<button class="search-btn">Search</button>
-								</form>
+									</select> -->
+									<input class="search-input" placeholder="Search products name here">
+									<!-- <button class="search-btn">Search</button> -->
+								<!-- </form> -->
 							</div>
 						</div>
 						<!-- /SEARCH BAR -->
@@ -102,13 +99,13 @@
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
 								<!-- Wishlist -->
-								<div>
+								<!-- <div>
 									<a href="#">
 										<i class="fa fa-heart-o"></i>
 										<span>Your Wishlist</span>
 										<div class="qty">2</div>
 									</a>
-								</div>
+								</div> -->
 								<!-- /Wishlist -->
 
 								<!-- Cart -->
@@ -149,13 +146,22 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="">Home</a></li>
-						<li><a href="#">Hot Deals</a></li>
+						<li class="active"><a href="{{ route('home') }}">Home</a></li>
+						<?php 
+							$categories = App\Category::all(); 
+						?>
+						@foreach ($categories as $category)
+			            	@if ($category['parent_id'] == 0 )
+			            	<li><a href="{{route('product.showProductByCategory', $category->id)}}">{{$category['name']}}</a>
+			            	</li>
+			           		@endif
+			        	@endforeach
+						<!-- <li><a href="#">Hot Deals</a></li>
 						<li><a href="#">Categories</a></li>
 						<li><a href="#">Laptops</a></li>
 						<li><a href="#">Smartphones</a></li>
 						<li><a href="#">Cameras</a></li>
-						<li><a href="#">Accessories</a></li>
+						<li><a href="#">Accessories</a></li> -->
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -216,11 +222,11 @@
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">About Us</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+								<p>CellphoneHouseVn limited company</p>
 								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+									<li><a href="#"><i class="fa fa-map-marker"></i>189 Han Thuyen Street</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i>+84-169-6229-302</a></li>
+									<li><a href="#"><i class="fa fa-envelope-o"></i>mrdatmoon@gmail.com</a></li>
 								</ul>
 							</div>
 						</div>
@@ -229,11 +235,15 @@
 							<div class="footer">
 								<h3 class="footer-title">Categories</h3>
 								<ul class="footer-links">
-									<li><a href="#">Hot deals</a></li>
-									<li><a href="#">Laptops</a></li>
-									<li><a href="#">Smartphones</a></li>
-									<li><a href="#">Cameras</a></li>
-									<li><a href="#">Accessories</a></li>
+									<?php 
+										$categories = App\Category::all(); 
+									?>
+									@foreach ($categories as $category)
+						            	@if ($category['parent_id'] == 0 )
+						            	<li><a href="{{route('product.showProductByCategory', $category->id)}}">{{$category['name']}}</a>
+						            	</li>
+						           		@endif
+						        	@endforeach
 								</ul>
 							</div>
 						</div>
@@ -288,7 +298,7 @@
 							</ul>
 							<span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
 						</div>
@@ -311,6 +321,10 @@
 
 		<!-- Display cart total quatity by icon -->
 		<script src="{{asset('js/cart.icon.js')}}"></script>
+
+		<!-- Search engine -->
+		<script src="{{asset('js/typeahead.bundle.min.js')}}"></script>
+		<script src="{{asset('js/search.engine.js')}}"></script>
 
 	</body>
 </html>

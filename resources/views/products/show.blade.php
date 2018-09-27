@@ -2,11 +2,11 @@
 
 @section('content')
         <!-- BREADCRUMB -->
-        <div id="breadcrumb" class="section">
+        <!-- <div id="breadcrumb" class="section"> -->
             <!-- container -->
-            <div class="container">
+            <!-- <div class="container"> -->
                 <!-- row -->
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12">
                         <ul class="breadcrumb-tree">
                             <li><a href="#">Home</a></li>
@@ -16,11 +16,11 @@
                             <li class="active">Product name goes here</li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
                 <!-- /row -->
-            </div>
+            <!-- </div> -->
             <!-- /container -->
-        </div>
+        <!-- </div> -->
         <!-- /BREADCRUMB -->
 
         <!-- SECTION -->

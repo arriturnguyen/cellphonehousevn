@@ -35,16 +35,26 @@
 							<h3 class="aside-title">Categories</h3>
 							<div class="checkbox-filter">
 
+								<?php 
+									$categories = App\Category::all(); 
+								?>
+								@foreach ($categories as $category)
+						        @if ($category['parent_id'] != 0 )	
 								<div class="input-checkbox">
-									<input type="checkbox" id="category-1">
+									<!-- <input type="checkbox" id="category-1"> -->
 									<label for="category-1">
 										<span></span>
-										Laptops
-										<small>(120)</small>
+										<a href="{{route('product.showProductByCategory', $category->id)}}">{{$category['name']}}</a>
+										<?php
+											$productsCount = App\Product::where('category_id', $category['id'])->count();
+										?>
+										<small>({{$productsCount}})</small>
 									</label>
 								</div>
+								@endif
+								@endforeach
 
-								<div class="input-checkbox">
+								<!-- <div class="input-checkbox">
 									<input type="checkbox" id="category-2">
 									<label for="category-2">
 										<span></span>
@@ -87,7 +97,7 @@
 										Smartphones
 										<small>(740)</small>
 									</label>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<!-- /aside Widget -->
@@ -113,7 +123,7 @@
 						<!-- /aside Widget -->
 
 						<!-- aside Widget -->
-						<div class="aside">
+						<!-- <div class="aside">
 							<h3 class="aside-title">Brand</h3>
 							<div class="checkbox-filter">
 								<div class="input-checkbox">
@@ -165,7 +175,7 @@
 									</label>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- /aside Widget -->
 
 						<!-- aside Widget -->

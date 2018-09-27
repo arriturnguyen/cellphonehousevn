@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
@@ -16,8 +18,9 @@ class ProductController extends Controller
     {
         // Get all product
         //DB::enableQueryLog();
-        $products = Product::all();
-        return view('products/index')->with('products', $products);
+        $products = Product::orderBy('created_at', 'DESC')->paginate(12);
+        // dd($products);
+        return view('products/index', compact('products'));
     }
 
     /**
@@ -85,5 +88,28 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function showProductByCategory(Product $product, Category $category)
+    {
+        $categoryId = $category->id;
+        // dd($categoryId);
+        $subCategoryIds = Category::where('parent_id', $categoryId)->pluck('id');
+        // dd($subCategoryIds);
+        if (($category->parent_id) == 0) {
+            $products = Product::whereIn('category_id', $subCategoryIds)->paginate(12);
+        } else {
+            $products = Product::where('category_id', $categoryId)->paginate(12);
+        }
+        
+        // dd($products);
+        return view('products/index', compact('products'));
+    }
+
+    public function searchByName(Request $request)
+    {
+        $products = Product::where('name', 'like', '%' . $request->value . '%')->get();
+
+        return response()->json($products); 
     }
 }

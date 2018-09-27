@@ -34,7 +34,7 @@
 						$bootstrapColWidth = 12 / $numOfCols;
 						?>
 						<div class="row">
-							<?php foreach ($products as $product){ ?>  
+							@foreach($products as $product) 
 								<div class="col-md-<?php echo $bootstrapColWidth; ?>">
 							        <div class="product">
 							        	<a href="{{route('product.show', $product->id)}}">
@@ -84,11 +84,12 @@
 							<?php
 							    $rowCount++;
 							    if($rowCount % $numOfCols == 0) echo '</div><div class="row">';
-							} ?>
+							 ?>
+							@endforeach
+							{{ $products->links() }}
 						<!-- </div> Thua 1 the div?-->
 					</div>	
 					<!-- /STORE -->
-			
 
 						<!-- store bottom filter -->
 						<div class="store-filter clearfix">

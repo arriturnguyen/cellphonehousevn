@@ -23,6 +23,10 @@ Route::get('/products', ['uses' => 'ProductController@index', 'as' => 'product.i
 
 Route::get('/products/{product}', ['uses' => 'ProductController@show', 'as' => 'product.show']);
 
+Route::get('/category/{category}', ['uses' => 'ProductController@showProductByCategory', 'as' => 'product.showProductByCategory']);
+
+Route::get('/search/name', 'ProductController@searchByName');
+
 // Route::get('/order', ['uses' => 'OrderController@show', 'as' => 'order.checkout']);
 Auth::routes();
 

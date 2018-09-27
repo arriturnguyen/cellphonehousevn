@@ -113,6 +113,26 @@ ul, ol {
 	Inputs
 \*----------------------------*/
 
+/*Search engine input (Changed place*/
+.search-input {
+  font-family: 'Montserrat', sans-serif;
+  width: 596px;
+  height: 40px;
+  padding: 8px 12px;
+  font-size: 16px;
+  line-height: 30px;
+  border: 2px solid #D10024;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  outline: none;
+}
+
+.list-group-item {
+  font-family: 'Montserrat', sans-serif;
+  width: 596px;
+}
+
 /*-- Text input --*/
 
 .input {

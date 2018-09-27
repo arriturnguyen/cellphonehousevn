@@ -25,12 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        foreach ($categories as $category) {
-            if ($category['parent_id'] == 0 ) {
-                $pa_categories[] = $category['name'];
-            }
-        }
-        return view('home', compact('pa_categories'));
+        return view('home');
     }
 }
