@@ -15,7 +15,7 @@
               <div class="form-group">
                 <label for="name">{{ __('product.admin.create.name') }} <span class="text-danger">*</span></label>
                 <div class="form-line">
-                  <input type="text" name="name" class="form-control" value="{{ old('name')}}" placeholder="" />
+                  <input type="text" name="name" class="form-control" value="{{ old('name')}}" placeholder="" required />
                 </div>
               </div>
               <div class="form-group">
@@ -33,26 +33,26 @@
               <div class="form-group">
                 <label for="price">{{ __('product.admin.create.price') }} <span class="text-danger">*</span></label>
                 <div class="form-line">
-                  <input type="text" name="price" class="form-control" value="{{ old('price')}}" placeholder="" />
+                  <input type="text" name="price" class="form-control" value="{{ old('price')}}" placeholder="" required />
                 </div>
               </div>
               <div class="form-group">
                 <label for="old_price">{{ __('product.admin.create.old_price') }} <span class="text-danger">*</span></label>
                 <div class="form-line">
-                  <input type="text" name="old_price" class="form-control" value="{{ old('old_price')}}" placeholder="" />
+                  <input type="text" name="old_price" class="form-control" value="{{ old('old_price')}}" placeholder="" required />
                 </div>
               </div>
               <div class="form-group">
                 <label for="description">{{ __('product.admin.create.description') }} <span class="text-danger">*</span></label>
                 <div class="form-line">
                   <!-- <input type="text" name="description" class="form-control" placeholder="" /> -->
-                  <textarea type="text" name="description" class="form-control" placeholder="">{{ old('description')}}</textarea>
+                  <textarea type="text" name="description" class="form-control" placeholder="" required>{{ old('description')}}</textarea>
                 </div>
               </div>
               <div class="form-group">
                   <label for="image[]">{{ __('product.admin.create.images') }} <span class="text-danger">*</span></label>
                   <div class="form-line">
-                    <input type="file" name="image[]" class="form-control" multiple/>
+                    <input type="file" name="image[]" class="form-control" multiple required />
                   </div>
               </div>
               <div class="form-group">
@@ -70,7 +70,7 @@
               <div class="form-group">
                 <label for="in_stock">{{ __('product.admin.create.in_stock') }} <span class="text-danger">*</span></label>
                   <div class="form-line">
-                    <input type="text" name="in_stock" class="form-control" value="{{ old('in_stock')}}" placeholder="" />
+                    <input type="text" name="in_stock" class="form-control" value="{{ old('in_stock')}}" placeholder="" required />
                   </div>
               </div>
               <button type="submit" id="submit" name="submit" class="btn btn-success">{{ __('product.admin.create.create_product') }}</button>&nbsp;

@@ -15,19 +15,19 @@
               <div class="form-group">
                 <label for="name">Name <span class="text-danger">*</span></label>
                 <div class="form-line">
-                  <input type="text" name="name" class="form-control" value="{{old('name')}}" placeholder=""/>
+                  <input type="text" name="name" class="form-control" value="{{old('name')}}" placeholder="" required />
                 </div>
               </div>
               <div class="form-group">
                 <label for="email">Email <span class="text-danger">*</span></label>
                 <div class="form-line">
-                  <input type="text" name="email" class="form-control" value="{{old('email')}}" placeholder="" />
+                  <input type="text" name="email" class="form-control" value="{{old('email')}}" placeholder="" required />
                 </div>
               </div>
               <div class="form-group">
                 <label for="password">Password <span class="text-danger">*</span></label>
                 <div class="form-line">
-                  <input type="password" name="password" class="form-control" value="{{old('password')}}" placeholder="" />
+                  <input type="password" name="password" class="form-control" value="{{old('password')}}" placeholder="" required />
                 </div>
               </div>
               <div class="form-group">
@@ -37,9 +37,9 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="phone">Phone</label>
+                <label for="phone">Phone <span class="text-danger">*</span></label>
                 <div class="form-line">
-                  <input type="text" name="phone" class="form-control" value="{{old('phone')}}" placeholder="" />
+                  <input type="text" name="phone" class="form-control" value="{{old('phone')}}" placeholder="" required />
                 </div>
               </div>
               <div class="form-group">

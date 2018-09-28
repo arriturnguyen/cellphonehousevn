@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CreateCategoryRequest;
@@ -125,18 +126,28 @@ class CategoryController extends Controller
     {
         try {
             if ($category->parent_id != 0) {
-                $category->delete();
-                if (Category::countChild($category->parent_id)>0) {
-                    return redirect()->route('admin.categories.showChild', $category->parent_id)->with('message', __('category.admin.message.del'));
+                $childProducts = Product::where('category_id', $category->id)->count();
+                if ($childProducts > 0) {
+                    return redirect()->route('admin.categories.index')->with('alert', __('category.admin.message.del_no_permit2'));
                 } else {
-                    return redirect()->route('admin.categories.index')->with('message', __('category.admin.message.del'));
-                }
+                    $category->delete();
+                    if (Category::countChild($category->parent_id)>0) {
+                        return redirect()->route('admin.categories.showChild', $category->parent_id)->with('message', __('category.admin.message.del'));
+                    } else {
+                        return redirect()->route('admin.categories.index')->with('message', __('category.admin.message.del'));
+                    }
+                }                
             } else {
                 if (Category::countChild($category->id)>0) {
                     return redirect()->route('admin.categories.index')->with('alert', __('category.admin.message.del_no_permit'));
                 } else {
-                    $category->delete();
+                    $childProducts = Product::where('category_id', $category->id)->count();
+                    if ($childProducts > 0) {
+                        return redirect()->route('admin.categories.index')->with('alert', __('category.admin.message.del_no_permit2'));
+                    } else {
+                        $category->delete();
                     return redirect()->route('admin.categories.index')->with('message', __('category.admin.message.del'));
+                    } 
                 }
             }
         } catch (Exception $ex) {

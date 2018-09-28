@@ -16,7 +16,7 @@
                 <div class="form-group">
                   <label for="full_name">{{ __('user.admin.name') }}</label>
                   <div class="form-line">
-                    <input type="text" name="name" class="form-control" value="{{ $user->name }}" placeholder="" />
+                    <input type="text" name="name" class="form-control" value="{{ $user->name }}" placeholder="" required />
                   </div>
                 </div>
                 <div class="form-group">
@@ -32,7 +32,7 @@
                 <div class="form-group">
                   <label for="phone">{{ __('user.admin.phone') }}</label>
                   <div class="form-line">
-                    <input type="text" name="phone" class="form-control" value="{{ $user->phone }}" placeholder="{{ __('user.admin.create.enter_phone') }}" />
+                    <input type="text" name="phone" class="form-control" value="{{ $user->phone }}" placeholder="{{ __('user.admin.create.enter_phone') }}" required />
                   </div>
                 </div>
                 <div class="form-group">

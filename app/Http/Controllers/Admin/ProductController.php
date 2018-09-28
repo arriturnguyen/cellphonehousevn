@@ -49,7 +49,6 @@ class ProductController extends Controller
 
             if ($request->hasFile('image')) 
             {
-                
                 $imageData = [];
                 foreach (request()->file('image') as $image) 
                 {

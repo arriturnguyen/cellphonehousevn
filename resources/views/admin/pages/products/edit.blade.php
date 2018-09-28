@@ -16,7 +16,7 @@
                 <div class="form-group">
                   <label for="name">{{ __('product.admin.edit.name') }}</label>
                   <div class="form-line">
-                    <input type="text" name="name" class="form-control" value="{{ $product->name }}" placeholder="" />
+                    <input type="text" name="name" class="form-control" value="{{ $product->name }}" placeholder="" required />
                   </div>
                 </div>
                 <div class="form-group">
@@ -33,19 +33,19 @@
                 <div class="form-group">
                   <label for="price">{{ __('product.admin.edit.price') }}</label>
                   <div class="form-line">
-                    <input type="text" name="price" class="form-control" value="{{ $product->price }}" placeholder="" />
+                    <input type="text" name="price" class="form-control" value="{{ $product->price }}" placeholder="" required />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="old_price">{{ __('product.admin.edit.old_price') }}</label>
                   <div class="form-line">
-                    <input type="text" name="old_price" class="form-control" value="{{ $product->old_price }}" placeholder="" />
+                    <input type="text" name="old_price" class="form-control" value="{{ $product->old_price }}" placeholder="" required />
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="description">{{ __('product.admin.edit.description') }}</label>
                   <div class="form-line">
-                    <input type="text" name="description" class="form-control" value="{{ $product->description }}" placeholder="" />
+                    <input type="text" name="description" class="form-control" value="{{ $product->description }}" placeholder="" required />
                   </div>
                 </div>
                 <div class="form-group">
@@ -54,14 +54,14 @@
                     <select name="status" class="form-control">
                       <option value="1" @if ($product->status == 1) selected @endif>{{__('product.admin.edit.in_stock')}}</option>
                       <option value="2" @if ($product->status == 2) selected @endif>{{__('product.admin.edit.out_stock')}}</option>
-                      <option value="2" @if ($product->status == 3) selected @endif>{{__('product.admin.edit.coming_soon')}}</option>
+                      <option value="3" @if ($product->status == 3) selected @endif>{{__('product.admin.edit.coming_soon')}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="in_stock">{{ __('product.admin.edit.in_stock') }}</label>
                   <div class="form-line">
-                    <input type="text" name="in_stock" class="form-control" value="{{ $product->in_stock }}" placeholder="" />
+                    <input type="text" name="in_stock" class="form-control" value="{{ $product->in_stock }}" placeholder="" required />
                   </div>
                 </div>
                 <div class="form-group">
