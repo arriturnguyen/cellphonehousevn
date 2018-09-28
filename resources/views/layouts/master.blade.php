@@ -147,6 +147,7 @@
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href="{{ route('home') }}">Home</a></li>
+						<li><a href="{{ route('product.index') }}">All products</a></li>
 						<?php 
 							$categories = App\Category::all(); 
 						?>

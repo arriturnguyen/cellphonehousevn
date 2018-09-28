@@ -103,7 +103,7 @@
 						<!-- /aside Widget -->
 
 						<!-- aside Widget -->
-						<div class="aside">
+						<!-- <div class="aside">
 							<h3 class="aside-title">Price</h3>
 							<div class="price-filter">
 								<div id="price-slider"></div>
@@ -119,7 +119,7 @@
 									<span class="qty-down">-</span>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- /aside Widget -->
 
 						<!-- aside Widget -->
@@ -180,8 +180,29 @@
 
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">Top selling</h3>
-							<div class="product-widget">
+							<h3 class="aside-title">New Products</h3>
+							<?php
+								$newProducts = App\Product::orderBy('created_at', 'DESC')
+								               ->take(5)
+								               ->get();
+							?>
+							@foreach ($newProducts as $product)
+								<div class="product-widget">
+									<div class="product-img">
+										@if ($product->images != NULL)
+							                <img src="{{ $product->images[0] }}">
+							            @else
+							                <img src="images/products/no-image.jpg"></th>
+							            @endif
+									</div>
+									<div class="product-body">
+										<p class="product-category">{{ $product->category->name }}</p>
+										<h3 class="product-name"><a href="{{route('product.show', $product->id)}}">{{ $product->name }}</a></h3>
+										<h4 class="product-price">{{number_format($product->price)}} ₫ <del class="product-old-price">{{number_format($product->old_price)}} ₫</del></h4>
+									</div>
+								</div>
+							@endforeach
+							<!-- <div class="product-widget">
 								<div class="product-img">
 									<img src="./img/product01.png" alt="">
 								</div>
@@ -212,7 +233,7 @@
 									<h3 class="product-name"><a href="#">product name goes here</a></h3>
 									<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
 								</div>
-							</div>
+							</div> -->
 						</div>
 						<!-- /aside Widget -->
 					</div>
