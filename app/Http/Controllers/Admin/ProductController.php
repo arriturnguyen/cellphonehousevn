@@ -167,6 +167,10 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         try {
+            // $images = $product->images;
+            // foreach ($images as $image) {
+            //     unlink(public_path($image));
+            // }
             $product->delete();
             return redirect()->route('admin.products.index')->with('message', __('product.admin.delete_success'));
         } catch (Exception $e) {

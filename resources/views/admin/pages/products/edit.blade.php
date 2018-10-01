@@ -75,7 +75,7 @@
               <a href="{{ route('admin.products.index') }}" name="submit" class="btn btn-info waves-effect">{{ __('index.form_cancel') }}</a>
             </form>
                     <div><br>
-                      <h5>Product's old image</h5>
+                      <h5>Product's old image (Directly delete when click)</h5>
                       @if (!empty($product->images))
                         @foreach ($product->images as $index => $image)
                           <div id="product-image{{$index}}" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">

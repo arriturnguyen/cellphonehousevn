@@ -27,6 +27,7 @@ class EditCategoryRequest extends FormRequest
         return [
             'name' => [
                 'required',
+                'max:50',
                 'unique:categories,name,' . $category->name . ',name'//nothing to update
             ]
         ];

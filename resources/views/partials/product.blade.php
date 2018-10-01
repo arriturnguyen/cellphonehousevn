@@ -73,11 +73,20 @@
 												<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 											</div> -->
 										</div>
+										<!-- Fix bug null image[0] error -->
+										<?php
+											if ($product->images != NULL) {
+							                  $showImg = $product->images[0];
+											}
+							                else {
+							                  $showImg = 'images/products/no-image.jpg';
+							                }
+							            ?>    
 										<div class="add-to-cart">
 											<button class="add-to-cart-btn" id="{{$product->id}}" data-id="{{$product->id}}"
 			                                data-name="{{$product->name}}"
 			                                data-price="{{$product->price}}"
-			                                data-image="{{$product->images[0]}}" ><i class="fa fa-shopping-cart"></i> add to cart</button>
+			                                data-image="{{$showImg}}" ><i class="fa fa-shopping-cart"></i> add to cart</button>
 										</div>
 							        </div>
 							    </div>    

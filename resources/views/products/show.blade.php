@@ -40,7 +40,7 @@
                             @endforeach
                              
                     @else
-                        <img src="images/products/no-image.jpg">
+                        <img src="images/products/no-image.jpg" alt="Image not found">
                     @endif
                             </div>
                       </div>
@@ -122,7 +122,15 @@
                                     </select>
                                 </label> -->
                             </div>
-                            
+                            <!-- Fix bug null image[0] error -->
+                                        <?php
+                                            if ($product->images != NULL) {
+                                              $showImg = $product->images[0];
+                                            }
+                                            else {
+                                              $showImg = 'images/products/no-image.jpg';
+                                            }
+                                        ?>
                             @if ($product->in_stock > 0)
                             <div class="add-to-cart">
                                 <div class="qty-label">
@@ -138,7 +146,7 @@
                                 <button class="add-to-cart-btn" id="{{$product->id}}" data-id="{{$product->id}}"
                                 data-name="{{$product->name}}"
                                 data-price="{{$product->price}}"
-                                data-image="{{$product->images[0]}}" ><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                data-image="{{$showImg}}" ><i class="fa fa-shopping-cart"></i> add to cart</button>
                             </div>
                             @endif
                             <!-- <ul class="product-btns">

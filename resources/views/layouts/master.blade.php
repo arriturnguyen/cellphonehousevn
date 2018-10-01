@@ -57,7 +57,7 @@
 						<li><a href="#"><i class="fa fa-map-marker"></i> 189 Han Thuyen Street </a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+						<!-- <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li> -->
 					</ul>
 				</div>
 			</div>

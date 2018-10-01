@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <input type="number" name="amount" id="amount" readonly hidden>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <div class="input-checkbox">
                             <input type="checkbox" id="create-account">
                             <label for="create-account">
@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- /Billing Details -->
                 

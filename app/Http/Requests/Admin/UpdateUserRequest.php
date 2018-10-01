@@ -24,10 +24,11 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
+        // dd($this->user->id);
         return [
             'name'          => 'string|max:255',
             'address'       => 'string|max:255',
-            'phone'         => 'regex:/^0[0-9]{9,10}$/|unique:users,phone',
+            'phone'         => 'regex:/^0[0-9]{9,10}$/|unique:users,phone,'.$this->user->id,
             'user_type'     => 'required|integer|min:1|max:2',
             'active'        => 'required|boolean',
         ];
