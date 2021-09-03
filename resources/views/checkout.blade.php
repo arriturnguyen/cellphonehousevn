@@ -56,6 +56,19 @@
                             </div>
                         </div>
                     </div> -->
+                    <div class="form-group" id="parent">
+                        <div>
+                            <label for="name">auth 4 <span class="text-danger">*</span></label>
+                            <input type="checkbox" class="ex" name="auth_1" id="auth_1" value="auth 1">
+                            <input type="checkbox" class="ex" name="auth_2" id="auth_2" value="auth 2">
+                            <input type="checkbox" class="ex" name="auth_3" id="auth_3" value="auth 3">
+                            <input type="checkbox" class="ex" name="auth_4" id="auth_4" value="4" onclick="see()">
+                        </div>
+                    </div>
+                    <div class="form-group" id="form_test" style="display: none;">
+                        <label for="name">form test <span class="text-danger">*</span></label>
+                        <input class="input" type="tel" name="phone" value="{{ old('phone')}}" placeholder="" required>
+                    </div>
                 </div>
                 <!-- /Billing Details -->
                 
@@ -114,6 +127,31 @@
 <!-- /SECTION -->
 
 <script type="text/javascript">
+function see()
+{
+    // alert('ddd');
+        if ($('#parent').find('#auth_4').prop("checked")) {
+            $("#form_test").show();
+        } else {
+            $("#form_test").hide();
+        }
+}
+// $(document).ready(function(){
+//     // alert($('#parent').find('#auth_4').prop("checked"));
+//     $('#checkbox').on('change', function() {
+//         if (this.checked) {
+//             // Do your stuff
+//         }
+//     });
+
+//         if ($('#parent').find('#auth_4').prop("checked")) {
+//             $("#form_test").show();
+//         } else {
+//             $("#form_test").hide();
+//         }
+         
+// });
+
     var fadeTime = 300;
     $(document).ready(function() {
         console.log(cart);

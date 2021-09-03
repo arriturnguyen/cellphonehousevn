@@ -20,5 +20,6 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "push.js": "^1.0.12"
     }
 }

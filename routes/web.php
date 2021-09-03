@@ -54,4 +54,7 @@ Route::group(['namespace' => 'Home'], function () {
     Route::get('/cart', 'CartController@index')->name('cart');
     // Route::get('/checkout','OrderController@create')->name('order.create');
     Route::resource('orders', 'OrderController');
+    Route::get('/test', 'TestController@index')->name('test');
+    Route::get('/test/getData', 'TestController@getData');
+    Route::get('/test/getTmp', 'TestController@getTmp');
 });
